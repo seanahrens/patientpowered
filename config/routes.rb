@@ -11,11 +11,29 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # Static Pages
-  root 'static#home'
+  root 'pcori#overview'
+
+  get 'study_index' => 'pcori#study_index'
+  get 'study_show' => 'pcori#study_show'
+  get 'study_create' => 'pcori#study_create'
+  get 'idea_index' => 'pcori#idea_index'
+  get 'idea_show' => 'pcori#idea_show'
+  get 'idea_create' => 'pcori#idea_create'
+  get 'overview' => 'pcori#overview'
+  get 'stats' => 'pcori#stats'
+
+
+
+
+
   get 'about' => 'static#about'
   get 'external_link_warning' => 'static#external_link_warning'
   get 'privacy' => 'static#privacy'
   get 'terms' => 'static#terms'
+
+
+
+
 
 
   # Research Section

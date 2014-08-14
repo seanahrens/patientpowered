@@ -1,0 +1,3 @@
+class PcoriController < ApplicationController
+
+end
