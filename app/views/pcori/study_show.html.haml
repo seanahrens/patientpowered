@@ -31,8 +31,14 @@
     %hr/
 .row
   .col-md-12
-    %h4 Team
-    %hr/
+    .media
+      %a.pull-left{href: "#"}
+        %img.media-object.img-circle{alt: current_user.social_profile.name, src: current_user.social_profile.photo.url}/
+      .media-body
+        %h4.media-heading Team
+        %strong= current_user.social_profile.name
+        , Will Headaphol, Adam Admur, Piotr Mankowski
+%hr/
 
 .row
   .col-md-12
