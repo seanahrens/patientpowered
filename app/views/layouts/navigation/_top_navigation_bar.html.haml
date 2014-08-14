@@ -24,9 +24,14 @@
         = link_to "Overview", overview_path
       %li
         = link_to "Successfully Matched", study_index_path
-
-
-
+      - if current_user
+        %li
+          = link_to "<i class='fa fa-sign-out'></i> Sign out".html_safe, main_app.destroy_user_session_path, :method => :delete
+      - else
+        %li
+          %a{:href => new_user_session_path}
+            %i.fa.fa-sign-in
+              Sign In
 
 
 
