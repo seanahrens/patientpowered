@@ -7,6 +7,12 @@ body {
 
   margin-top: 60px;
 
+  // Usage
+  a.no-link-styling {
+    text-decoration: none;
+    color: inherit;
+  }
+
   .graphs .panel-body {
     height: 200px;
     text-align: center;

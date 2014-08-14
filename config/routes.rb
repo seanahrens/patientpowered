@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # Static Pages
   root 'pcori#overview'
 
+
   get 'study_index' => 'pcori#study_index'
   get 'study_show' => 'pcori#study_show'
   get 'study_create' => 'pcori#study_create'
