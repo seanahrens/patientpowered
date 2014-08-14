@@ -16,10 +16,10 @@ Rails.application.routes.draw do
 
   get 'study_index' => 'pcori#study_index'
   get 'study_show' => 'pcori#study_show'
-  get 'study_create' => 'pcori#study_create'
+  get 'study_new' => 'pcori#study_new'
   get 'idea_index' => 'pcori#idea_index'
   get 'idea_show' => 'pcori#idea_show'
-  get 'idea_create' => 'pcori#idea_create'
+  get 'idea_new' => 'pcori#idea_new'
   get 'overview' => 'pcori#overview'
   get 'stats' => 'pcori#stats'
 
