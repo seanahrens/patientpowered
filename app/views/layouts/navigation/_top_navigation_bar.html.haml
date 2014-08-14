@@ -1,16 +1,20 @@
 .navbar.navbar-default{role: "navigation"}
   .navbar-header
-    %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
-      %span.sr-only Toggle navigation
-      %span.icon-bar
-      %span.icon-bar
-      %span.icon-bar
 
+    .text-center{:style => "position: absolute; width: 100%; margin-top: 15px; font-weight: 200em;"}
+      PatientPowered
     / %a.navbar-brand{href: "/"}
 
     %a.btn.btn-default.navbar-btn{type: "button", :href => root_path, :style => "margin-left: 15px;"}
       %span.sr-only Back
       %i.fa.fa-arrow-left
+
+
+    %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+      %span.sr-only Toggle navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
 
   .collapse.navbar-collapse
     %ul.nav.navbar-nav
