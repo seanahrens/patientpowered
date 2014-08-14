@@ -1,1 +1,6 @@
-This is one study
+.row
+  .col-md-12
+    = image_tag "video.png"
+.row
+  .col-md-12
+    %h3 Study Question
