@@ -29,14 +29,16 @@
   .col-md-12
     %h4 302 Followers
     %hr/
+
+
 .row
   .col-md-12
     .media
       %a.pull-left{href: "#"}
-        %img.media-object.img-circle{alt: current_user.social_profile.name, src: current_user.social_profile.photo.url}/
+        %img.media-object.img-circle{alt: @author.social_profile.name, src: @author.social_profile.photo.url}/
       .media-body
         %h4.media-heading Team
-        %strong= current_user.social_profile.name
+        %strong= @author.social_profile.name
         , Will Headaphol, Adam Admur, Piotr Mankowski
 %hr/
 
