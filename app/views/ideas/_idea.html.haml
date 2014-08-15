@@ -1,5 +1,5 @@
 
-%a.no-link-styling{:href => idea}
+%a.no-link-styling{:href => idea_path(idea)}
   .row
     .col-md-12.text-center
       %i.fa.fa-lightbulb-o.text-h1
@@ -13,13 +13,7 @@
   .row
     .col-md-12
       %h4
+        Followers
+      %h4
         %i.fa.fa-thumbs-o-up
         = idea.followers_count
-        Followers
-        - if !current_user.following?(idea)
-          %a.btn.btn-default{:href => follow_idea_path(id: idea.id)} Follow!
-        - else
-          %a.btn.btn-default{:href => stop_following_idea_path(id: idea.id)} Stop Following!
-
-
-
