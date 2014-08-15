@@ -14,71 +14,71 @@ unless Rails.env == "test"
 
 
 
-  to_keep = [ "users", "schema_migrations"]
-  tables = [
-      "answer_types",
-      "question_answer_options",
-      "answer_sessions",
-      "answers",
-      "answer_values",
-      "questions",
-      "answer_edges",
-      "units",
-      "question_help_messages",
-      "answer_options",
-      "question_types",
-      "question_edges",
-      "question_flows",
-      "votes",
-      "groups"
-  ]
+  # to_keep = [ "users", "schema_migrations"]
+  # tables = [
+  #     "answer_types",
+  #     "question_answer_options",
+  #     "answer_sessions",
+  #     "answers",
+  #     "answer_values",
+  #     "questions",
+  #     "answer_edges",
+  #     "units",
+  #     "question_help_messages",
+  #     "answer_options",
+  #     "question_types",
+  #     "question_edges",
+  #     "question_flows",
+  #     "votes",
+  #     "groups"
+  # ]
 
-  tables.each do |table|
-    ActiveRecord::Base.connection.execute("TRUNCATE #{table}")
-    ActiveRecord::Base.connection.execute("SELECT SETVAL('#{table}_id_seq', 100000000)")
-  end
+  # tables.each do |table|
+  #   ActiveRecord::Base.connection.execute("TRUNCATE #{table}")
+  #   ActiveRecord::Base.connection.execute("SELECT SETVAL('#{table}_id_seq', 100000000)")
+  # end
 
-  files = [
-      ["units.yml", Unit],
-      ["groups.yml", Group],
-      ["answer_types.yml", AnswerType],
-      ["question_types.yml", QuestionType],
-      ["answer_options.yml", AnswerOption],
-      ["question_help_messages.yml", QuestionHelpMessage],
-      ["questions.yml", Question],
-      ["question_flows.yml", QuestionFlow],
-  ]
+  # files = [
+  #     ["units.yml", Unit],
+  #     ["groups.yml", Group],
+  #     ["answer_types.yml", AnswerType],
+  #     ["question_types.yml", QuestionType],
+  #     ["answer_options.yml", AnswerOption],
+  #     ["question_help_messages.yml", QuestionHelpMessage],
+  #     ["questions.yml", Question],
+  #     ["question_flows.yml", QuestionFlow],
+  # ]
 
-  files.each do |file_name, model_class|
-    file_path = Rails.root.join('lib', 'data', 'surveys', file_name)
+  # files.each do |file_name, model_class|
+  #   file_path = Rails.root.join('lib', 'data', 'surveys', file_name)
 
-    puts(file_path)
+  #   puts(file_path)
 
-    yaml_data = YAML.load_file(file_path)
+  #   yaml_data = YAML.load_file(file_path)
 
-    yaml_data.each do |object_attrs|
-      #MY_LOG.info object_attrs
-      model_class.create(object_attrs)
-    end
-  end
+  #   yaml_data.each do |object_attrs|
+  #     #MY_LOG.info object_attrs
+  #     model_class.create(object_attrs)
+  #   end
+  # end
 
-  qe_path = Rails.root.join('lib', 'data', 'surveys', 'question_edges.yml')
-  puts(qe_path)
+  # qe_path = Rails.root.join('lib', 'data', 'surveys', 'question_edges.yml')
+  # puts(qe_path)
 
-  yaml_data = YAML.load_file(qe_path)
+  # yaml_data = YAML.load_file(qe_path)
 
-  yaml_data.each_with_index do |attrs, i|
+  # yaml_data.each_with_index do |attrs, i|
 
-    q1 = Question.find(attrs['parent_question_id'])
-    q2 = Question.find(attrs['child_question_id'])
+  #   q1 = Question.find(attrs['parent_question_id'])
+  #   q2 = Question.find(attrs['child_question_id'])
 
-    qe = QuestionEdge.build_edge(q1, q2, attrs['condition'], attrs['question_flow_id'])
+  #   qe = QuestionEdge.build_edge(q1, q2, attrs['condition'], attrs['question_flow_id'])
 
-    puts("Creating edge #{i} of #{yaml_data.length} between #{q1.id} and #{q2.id}")
-    raise StandardError, qe.errors.full_messages unless qe.save
-  end
+  #   puts("Creating edge #{i} of #{yaml_data.length} between #{q1.id} and #{q2.id}")
+  #   raise StandardError, qe.errors.full_messages unless qe.save
+  # end
 
-  QuestionFlow.all.each {|qf| qf.reset_paths }
+  # QuestionFlow.all.each {|qf| qf.reset_paths }
 
   if (user = User.find_by_email("piotr.mankowski@gmail.com"))
     user.add_role :admin
@@ -88,4 +88,18 @@ unless Rails.env == "test"
     user.add_role :admin
     user.add_role :owner
   end
+
+
+
+  Idea.create(:title => "Does Remicade Exacerbate Acne?", :description => "I've lived with Acne for a long time and this is very important to me", :author => User.first)
+  Idea.create(:title => "Do periodic time off Adderal improve ADHD symptoms?", :description => "I do this with my ADHD all the time. Wondering who else agrees.", :author => User.first)
+
+
+
+
+
+
+
+
+
 end
