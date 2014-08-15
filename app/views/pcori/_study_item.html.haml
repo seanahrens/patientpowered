@@ -3,15 +3,23 @@
     .col-md-12
       %div{:style => "height: 200px; background-color: gray;"}
 
-      %h3 Study Question Title
+      %h4 Study Question Title
       %p Description Lorem Ipsum Tipsum in Yo Dimsum Make Me Wanna Run Fun in the Bun
 
   .row
     .col-md-12
-      .progress
+      .progress{style: "margin-bottom: 5px;"}
         .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "40", role: "progressbar", style: "width: 40%"}
-      %h5 40/100 Patients Enrolled
-      .progress
-        .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "40", role: "progressbar", style: "width: 40%"}
-      %h5 $10,000/$2,000,000 Funds Raised
-%hr/
+      .row
+        .col-xs-6
+          %h5
+            40/100
+            .small Patients Committed
+        .col-xs-6
+          %h5
+            $10k/$1m
+            .small Money Raised
+      / .progress
+      /   .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "40", role: "progressbar", style: "width: 40%"}
+      / %h5 $10,000/$2,000,000 Funds Raised
+

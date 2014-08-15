@@ -7,6 +7,42 @@ body {
 
   margin-top: 60px;
 
+  .text-h1 {
+    font-size: 45px;
+  }
+
+  .text-h2 {
+    font-size: 35px;
+  }
+
+  .text-h3 {
+    font-size: 25px;
+  }
+
+  .text-h4 {
+    font-size: 20px;
+  }
+
+  .text-h5 {
+    font-size: 15px;
+  }
+
+  .text-h6 {
+    font-size: 10px;
+  }
+
+  .text-blue {
+    color: #428bca;
+  }
+
+  .text-gray {
+    color: #ccc;
+  }
+
+  .text-darkgray {
+    color: #aaa;
+  }
+
   // Usage
   a.no-link-styling {
     text-decoration: none;

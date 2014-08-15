@@ -1,59 +1,85 @@
 
-%h2 For Patients, By Patients
+%h3 Patient Powered Research
 
 %p
-  Lorem ipsum dolor sit amet, ius sonet veniam signiferumque eu, pri ad libris aperiam euripidis. Est ei ferri dolores, purto equidem ea eum. Latine tibique detracto cu pro. Usu movet oporteat apeirian no, te pri quis quando. Mandamus pertinacia mel in, in vim laoreet lucilius. Mundi repudiandae consectetuer et eos, nam ex sumo recusabo.
+  Patients are experts in the experience of their own condition. These experts should drive the research. This website is a non-profit, crowd-sourced collaboration that enables patients to work directly with patient-centered researchers in the field to craft new studies involving direct patient participation.
 
-.row
-  .col-xs-2.text-center
-    %h3
-      %i.fa.fa-user
-    %h1
-      %i.fa.fa-lightbulb-o
 
-  .col-xs-3.text-center
-    %br/
-    %h2
-      %i.fa.fa-chevron-right
 
-  .col-xs-2.text-center
-    %h3
-      %i.fa.fa-users
-    %h1
-      %i.fa.fa-thumbs-o-up
+/ .input-group
+/   %span.input-group-addon
+/     %i.fa.fa-search
+/   %input.form-control{type: "text"}/
+/   %span.input-group-btn
+/     %button.btn.btn-default{type: "button"} Search!
 
-  .col-xs-3.text-center
-    %br/
-    %h2
-      %i.fa.fa-chevron-right
+/ %br/
 
-  .col-xs-2.text-center
-    %h3
-      %i.fa.fa-user-md
-    %h1
-      %i.fa.fa-graduation-cap
+/ %a.btn.btn-primary.btn-block{:href => idea_index_path} Browse Ideas
 
-%br/
 
-.input-group
-  %span.input-group-addon
-    %i.fa.fa-search
-  %input.form-control{type: "text"}/
-  %span.input-group-btn
-    %button.btn.btn-default{type: "button"} Search!
 
-%br/
 
-%a.btn.btn-primary.btn-block{:href => idea_index_path} Browse Ideas
+%h3.text-center
+  %i.fa.fa-lightbulb-o.text-h2
+  Popular Ideas
 
+= render "idea_item"
 %hr/
+= render "idea_item"
 
-%h3 Popular Studies
 
-.row
-  .col-md-4
-    = render "study_item"
-  .col-md-4
-    = render "study_item"
-  .col-md-4
-    = render "study_item"
+%br/
+.well
+  .text-center
+    %h3
+      How Does It Work?
+
+  %br/
+
+  .row
+    .col-xs-12.text-center
+      %i.fa.fa-lightbulb-o.text-h1.text-blue
+      .text-h4 You Submit a Research Idea
+      .text-darkgray.small Your personal experience tells you something should be studied.
+
+  %br/
+  .row
+    .col-xs-12.text-center
+      %i.fa.fa-chevron-down.text-h2.text-gray
+  %br/
+
+  .row
+    .col-xs-12.text-center
+      %i.fa.fa-thumbs-o-up.text-h1.text-blue
+      .text-h4 People Follow & Contribute
+      .text-darkgray.small Patients, Researchers, & Medical Professionals show interest & support for your idea being rigorously studied.
+
+
+  %br/
+  .row
+    .col-xs-12.text-center
+      %i.fa.fa-chevron-down.text-h2.text-gray
+  %br/
+
+  .row
+    .col-xs-12.text-center
+      %i.fa.fa-graduation-cap.text-h1.text-blue
+      .text-h4 Researchers Turn Your Idea into a Study
+      .text-darkgray.small Researchers spot well-supported ideas and create a rigorous scientific study to answer it. They post what participation of patients and resources they need to make it a reality. People pitch in participation to make it happen.
+
+
+  %br/
+
+
+
+%h3.text-center
+  %i.fa.fa-graduation-cap.text-h2
+  Popular Studies
+
+
+= render "study_item"
+%hr/
+= render "study_item"
+
+
