@@ -8,6 +8,16 @@ class IdeasController < ApplicationController
   end
 
 
+  def tagged
+    if params[:tag].present?
+      @ideas = Idea.tagged_with(params[:tag])
+    else
+      @ideas = Idea.postall
+    end
+    render "index"
+  end
+
+
   def follow
     current_user.follow(@idea)
     redirect_to :back
@@ -88,6 +98,8 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:author_id, :title, :description, :video_url)
+      params.require(:idea).permit(:author_id, :title, :description, :video_url, :tag_list)
     end
+
+
 end

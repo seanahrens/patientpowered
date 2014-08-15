@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   rolify role_join_table_name: 'roles_users'
 
   acts_as_follower
-
+  acts_as_taggable
 
   include Authority::UserAbilities
   include Authority::Abilities
@@ -19,14 +19,21 @@ class User < ActiveRecord::Base
   has_many :votes
   has_one :social_profile
 
+
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
 
   def name
-    if social_profile
-      social_profile.name
+    if full_name
+      full_name
     else
-      email
+      "Anonymous"
     end
+
+    # if social_profile
+    #   social_profile.name
+    # else
+    #   email
+    # end
   end
 
   def self.scoped_users(email=nil, role=nil)

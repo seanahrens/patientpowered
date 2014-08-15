@@ -14,3 +14,9 @@
       %h4
         %i.fa.fa-thumbs-o-up
         = idea.followers_count
+  .row
+    .col-md-12
+      %h2 Tags:
+      - if idea.tags.any?
+        - idea.tags.each do |tag|
+          %a.label.label-success{:href=> tagged_url(:tag => tag.name)}= tag.name

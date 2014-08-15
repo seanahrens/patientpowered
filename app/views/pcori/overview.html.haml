@@ -23,7 +23,11 @@
   %i.fa.fa-lightbulb-o.text-h2
   Popular Ideas
 
-= render Idea.first
+- Idea.first(3).each do |idea|
+  = render idea
+  %hr/
+
+%br/
 
 %a.btn.btn-primary.btn-block{:href => ideas_path}
   See All Ideas...
@@ -31,62 +35,62 @@
 
 
 
-%br/
-.well.well-sm
-  .text-center
-    %h3
-      How Does It Work?
+/ %br/
+/ .well.well-sm
+/   .text-center
+/     %h3
+/       How Does It Work?
 
-  %br/
+/   %br/
 
-  .row
-    .col-xs-12.text-center
-      %i.fa.fa-lightbulb-o.text-h1.text-blue
-      .text-h4 You Submit a Research Idea
-      .text-darkgray.small Your personal experience tells you something should be studied.
+/   .row
+/     .col-xs-12.text-center
+/       %i.fa.fa-lightbulb-o.text-h1.text-blue
+/       .text-h4 You Submit a Research Idea
+/       .text-darkgray.small Your personal experience tells you something should be studied.
 
-  %br/
-  .row
-    .col-xs-12.text-center
-      %i.fa.fa-chevron-down.text-h2.text-gray
-  %br/
+/   %br/
+/   .row
+/     .col-xs-12.text-center
+/       %i.fa.fa-chevron-down.text-h2.text-gray
+/   %br/
 
-  .row
-    .col-xs-12.text-center
-      %i.fa.fa-thumbs-o-up.text-h1.text-blue
-      .text-h4 People Follow & Contribute
-      .text-darkgray.small Patients, Researchers, & Medical Professionals show interest & support for your idea being rigorously studied.
-
-
-  %br/
-  .row
-    .col-xs-12.text-center
-      %i.fa.fa-chevron-down.text-h2.text-gray
-  %br/
-
-  .row
-    .col-xs-12.text-center
-      %i.fa.fa-graduation-cap.text-h1.text-blue
-      .text-h4 Researchers Turn Your Idea into a Study
-      .text-darkgray.small Researchers spot well-supported ideas and create a rigorous scientific study to answer it. They post what participation of patients and resources they need to make it a reality. People pitch in participation to make it happen.
+/   .row
+/     .col-xs-12.text-center
+/       %i.fa.fa-thumbs-o-up.text-h1.text-blue
+/       .text-h4 People Follow & Contribute
+/       .text-darkgray.small Patients, Researchers, & Medical Professionals show interest & support for your idea being rigorously studied.
 
 
-  %br/
+/   %br/
+/   .row
+/     .col-xs-12.text-center
+/       %i.fa.fa-chevron-down.text-h2.text-gray
+/   %br/
+
+/   .row
+/     .col-xs-12.text-center
+/       %i.fa.fa-graduation-cap.text-h1.text-blue
+/       .text-h4 Researchers Turn Your Idea into a Study
+/       .text-darkgray.small Researchers spot well-supported ideas and create a rigorous scientific study to answer it. They post what participation of patients and resources they need to make it a reality. People pitch in participation to make it happen.
+
+
+/   %br/
 
 
 
-%h3.text-center
-  %i.fa.fa-graduation-cap.text-h2
-  Popular Studies
+/ %h3.text-center
+/   %i.fa.fa-graduation-cap.text-h2
+/   Popular Studies
 
 
-= render "study_item"
-%hr/
-= render "study_item"
+/ = render "study_item"
+/ %hr/
+/ = render "study_item"
 
-%br/
+/ %br/
 
-%a.btn.btn-primary.btn-block{:href => study_index_path}
-  See All Studies...
-  %i.fa.fa-chevron-right
+/ %a.btn.btn-primary.btn-block{:href => study_index_path}
+/   See All Studies...
+/   %i.fa.fa-chevron-right
 

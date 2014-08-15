@@ -1,0 +1,31 @@
+
+%h2 Interests!
+
+.row
+  .col-md-6.col-md-offset-3
+    .panel.panel-default
+      .panel-heading
+        .panel-title Interests
+      .panel-body
+        = form_for current_user, html: {role: "form", class: 'form-horizontal'} do |f|
+          .form-group
+            = f.label :full_name, :class => "control-label col-sm-5"
+            .col-sm-7
+              = f.text_field :full_name, autofocus: true, class: "form-control", placeholder: "Your Name (As you want others to see it)"
+
+          = f.label :tags
+          = f.text_field :tag_list
+
+          %fieldset
+            %legend User Roles
+            - [:patient,:researcher,:stakeholder].each do |role|
+              = f.label(role) do
+                = role.capitalize
+                = hidden_field_tag(role, 0)
+                = check_box_tag(role, 1, @user.has_role?(role))
+
+          .form-group
+            .col-sm-offset-5.col-sm-7
+              = f.submit "Update", :class => "btn btn-primary"
+
+

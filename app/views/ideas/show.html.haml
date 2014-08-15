@@ -20,6 +20,13 @@
 
 .row
   .col-md-12
+    %h2 Tags:
+    - if @idea.tags.any?
+      - @idea.tags.each do |tag|
+        %a.label.label-success{:href=> tagged_url(:tag => tag.name)}= tag.name
+
+.row
+  .col-md-12
     %p= @idea.description
 
 %hr/

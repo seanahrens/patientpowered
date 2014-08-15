@@ -3,11 +3,27 @@
 
 .row
   .col-md-12
-    %a.btn.btn-default.btn-block{:href => ""} Choose Condition
+    .list-group
+      - if !current_user
+        Sign in to see your tag list
+      - if current_user && current_user.tags.any?
+        - current_user.tags.each do |tag|
+          %a.list-group-item.list-group-item-success{:href=> tagged_url(:tag => tag.name)}
+            = tag.name
+            .badge= Idea.tagged_with(tag).count
+
+
 %br/
 
 - @ideas.each do |idea|
   = render idea
+  %hr/
+
+
+
+
+%br/
+%br/
 
 .row
   .col-md-12
