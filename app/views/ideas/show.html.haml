@@ -9,78 +9,75 @@
     Idea
 
 
-.row
-  .col-md-12.text-center
-    %i.fa.fa-lightbulb-o.text-h1
-    %span.text-h2 Idea
+/ .row
+/   .col-md-12.text-center
+/     %i.fa.fa-lightbulb-o.text-h1
+/     %span.text-h2 Idea
+
+
+
+
+
+
 
 .row
   .col-md-12
-    - if !@idea.video_url.blank?
-      %iframe{allowfullscreen: "", height: "220px;", width: "100%", src: "#{@idea.video_url}"}
-    - else
-      .text-center
-        = image_tag @idea.author.photo_url, :class => "img-circle"
+    .media
+      %a.pull-left
+        %img.media-object.img-circle{alt: @idea.author.name, src: @idea.author.photo_url, width: "60px"}/
+      .media-body
+        %h4.media-heading= @idea.title
+        %p= @idea.description
+        %small= "-#{@idea.author.name}"
 
-
-    %h4= @idea.title
-
-    %p
-      Proposed by
-      %strong= @idea.author.name
-
+%hr/
 .row
   .col-md-12
     - if @idea.tags.any?
       - @idea.tags.each do |tag|
         %a.label.label-success{:href=> tagged_url(:tag => tag.name)}= tag.name
 
-.row
-  .col-md-12
-    %p= @idea.description
 
-%hr/
-
-.row
-  .col-md-12.text-center
-    %h4 Commitments
-
-.row.text-center
-  .col-xs-4
-    %h3= @idea.followers_count_by_role(:patient)
-    Patients
-  .col-xs-4
-    %h3= @idea.followers_count_by_role(:researcher)
-    Researchers
-  .col-xs-4
-    %h3= @idea.followers_count_by_role(:stakeholder)
-    Stakeholders
-
-%br/
-.row
-  .col-md-12
-    - if current_user && current_user.following?(@idea)
-      .text-h5.text-center
-        %i.fa.fa-thumbs-o-up
-        You've committed to this research.
-        %a{:href => stop_following_idea_path(id: @idea.id)} Redact.
-
-    - else
-      %a.btn.btn-primary.btn-block{:href => follow_idea_path(id: @idea.id)}
-        %i.fa.fa-thumbs-o-up
-        I Want to Help this Research!
+- if !@idea.video_url.blank?
+  %iframe{allowfullscreen: "", height: "220px;", width: "100%", src: "#{@idea.video_url}"}
 
 
 %hr/
+.well
+  .row
+    .col-md-12.text-center
+      %h4 People Who Want To Help
 
-.row
-  .col-md-12
-    .list-group.list-group-default
-      .list-group-item
-        Comments
-        %span.badge 6
+  .row.text-center
+    .col-xs-4
+      %h3= @idea.followers_count_by_role(:patient)
+      Patients
+    .col-xs-4
+      %h3= @idea.followers_count_by_role(:researcher)
+      Researchers
+    .col-xs-4
+      %h3= @idea.followers_count_by_role(:stakeholder)
+      Stakeholders
 
-%h4 Share this!
+  %br/
+  .row
+    .col-md-12
+      - if current_user && current_user.following?(@idea)
+        .text-h5.text-center
+          %i.fa.fa-thumbs-o-up
+          You've committed to this research.
+          %a{:href => stop_following_idea_path(id: @idea.id)} Redact.
+
+      - else
+        %a.btn.btn-primary.btn-block{:href => follow_idea_path(id: @idea.id)}
+          %i.fa.fa-thumbs-o-up
+          I Want to Help this Research!
+
+
+%hr/
+
+
+%h4.text-center Share this Research Idea with the World!
 .row
   .col-xs-4
     %a.btn.btn-primary.btn-block{:href => "http://www.facebook.com/sharer/sharer.php?u=#{idea_url(@idea)}", :target => "_blank"}
@@ -102,31 +99,46 @@
 /       %i.fa.fa-graduation-cap.text-h2
 /       Studies Proposed
 
-%br/
+
+%hr/
+
+- @comments = @idea.comments
+
+.panel.panel-default
+
+
+  .panel-heading
+    %h3.panel-title.pull-left Comments
+    .badge.pull-right= @comments.count
+    .clearfix
+  - if @comments.any?
+    .panel-body
+      - @comments.each do |comment|
+        .media
+          %a.pull-left
+            %img.media-object.img-circle{alt: comment.user.name, src: comment.user.photo_url, width: "60px"}/
+          .media-body
+            %h4.media-heading
+            %small= comment.user.name
+            %br/
+            = comment.comment
+
+  .panel-footer
+    - if current_user
+      = form_tag "/ideas/add_new_comment" do
+        = hidden_field_tag "id", @idea.id
+        .form-group
+          = text_area_tag "comment[comment]", nil, :class => "form-control", :placeholder => "Type comment..."
+        .form-group
+          = submit_tag "Post Comment", :class => "form-control"
+    - else
+      %a.btn.btn-default.btn-block{:href => new_user_registration_path} Join to Comment!
+
+
+
+
 
 - if current_user && current_user == @idea.author
   .row
     .col-md-12
-      %a.btn.btn-default.btn-block{:href => edit_idea_path(@idea)} This is Your Idea. Edit it.
-
-%hr/
-
-- @idea.comments.each do |comment|
-  .media
-    %a.pull-left
-      %img.media-object.img-circle{alt: comment.user.name, src: comment.user.photo_url}/
-    .media-body
-      %h4.media-heading= comment.user.name
-      = comment.comment
-  %hr/
-
-- if current_user
-  = form_tag "/ideas/add_new_comment" do
-    = hidden_field_tag "id", @idea.id
-    .form-group
-      = text_area_tag "comment[comment]", nil, :class => "form-control"
-    .form-group
-      = submit_tag "Post Comment", :class => "form-control"
-- else
-  Sign in to comment
-
+      %a.btn.btn-warning.btn-block{:href => edit_idea_path(@idea)} This is Your Idea. Edit it.
