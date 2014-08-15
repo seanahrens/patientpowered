@@ -144,7 +144,7 @@ unless Rails.env == "test"
 
   @users.each do |u|
     10.times { u.follow(@ideas.sample) }
-    [1,2,3,4,5].sample.times { u.tag_list.add(@conditions_to_sample.sample) }
+    [1,2,3].sample.times { u.tag_list.add(@conditions_to_sample.sample) }
     u.save
   end
 

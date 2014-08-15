@@ -17,6 +17,4 @@
   .row
     .col-md-12
       %h2 Tags:
-      - if idea.tags.any?
-        - idea.tags.each do |tag|
-          %a.label.label-success{:href=> tagged_url(:tag => tag.name)}= tag.name
+      = render :partial => "tags/tag_list", :locals => {taggable: idea}

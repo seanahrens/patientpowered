@@ -6,6 +6,23 @@
 
 
 
+
+.row
+  .col-md-12
+    .list-group
+      %a.list-group-item{:href=> users_path(role: :patient)}
+        Patients
+        .badge= @patient_count
+      %a.list-group-item{:href=> users_path(role: :researcher)}
+        Researchers
+        .badge= @researcher_count
+      %a.list-group-item{:href=> users_path(role: :stakeholder)}
+        Stakeholders
+        .badge= @stakeholder_count
+      %a.list-group-item.list-group-item-info{:href=> users_by_condition_path}
+        By Condition
+
+
 / .input-group
 /   %span.input-group-addon
 /     %i.fa.fa-search

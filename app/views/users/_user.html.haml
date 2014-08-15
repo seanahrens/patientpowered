@@ -1,0 +1,7 @@
+.row
+  .col-md-12
+    = image_tag user.photo_url, :class => "img-circle"
+    %h4= user.name
+    = render :partial => "tags/tag_list", :locals => {taggable: user}
+  %hr/
+

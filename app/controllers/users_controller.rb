@@ -2,6 +2,25 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, :only => [] #add authentication here where needed
 
 
+  def index
+    if params[:condition] && params[:role]
+      @users = User.with_role(params[:role]).tagged_with(params[:condition])
+    elsif params[:condition]
+      @users = User.tagged_with(params[:condition])
+    elsif params[:role]
+      @users = User.with_role(params[:role])
+    else
+      @users = User.all
+    end
+
+  end
+
+
+  def by_condition
+    @tags = User.tag_counts_on(:tags).order('count desc')
+    #alpha?
+  end
+
   def edit
     @user = current_user
   end
@@ -31,6 +50,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:tag_list, :full_name)
+    params.require(:user).permit(:tag_list, :full_name, :role)
   end
 end
