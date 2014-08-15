@@ -80,6 +80,15 @@ unless Rails.env == "test"
 
   # QuestionFlow.all.each {|qf| qf.reset_paths }
 
+  if (user = User.find_by_email("seanahrens@gmail.com"))
+    user.add_role :admin
+    user.add_role :owner
+  else
+    user = User.create(email: "seanahrens@gmail.com", password: "12345678")
+    user.add_role :admin
+    user.add_role :owner
+  end
+
   if (user = User.find_by_email("piotr.mankowski@gmail.com"))
     user.add_role :admin
     user.add_role :owner
@@ -90,10 +99,27 @@ unless Rails.env == "test"
   end
 
 
+  # idea_titles = ["Does Remicade Exacerbate Acne?", "Do periodic time off Adderal improve ADHD symptoms?","Does using a Sleep Mask work?"]
+  # idea descriptions = ["Tritani oporteat singulis eu vim. Ne pri odio ponderum vituperatoribus, ea reque regione urbanitas vim. Legere minimum vim an. Nemore graecis consectetuer ad qui, ut mei feugiat appareat. Fabulas molestie ullamcorper ut duo, id vis ipsum ridens utamur, et per laudem commune. Omittam reprimique consequuntur has et, movet civibus forensibus sed ex.",
+  # "Noluisse tacimates interesset eu cum, consulatu imperdiet intellegebat cum ei, id nec erat cotidieque. Offendit eloquentiam ei nec. Perfecto petentium ad duo, ad nec minim scripta, id nam choro democritum disputationi. Cu his saepe prompta, idque soluta appellantur mel ex, diceret detracto sed no. Sit aeterno tibique mediocritatem te, te mea dico assentior, et soluta vocent sit.",
+  # "Eos sint labores honestatis cu, nulla percipitur mei an. Ex sit quaestio ocurreret conceptam, soleat quidam eam eu. Mel no quodsi facilis, est et ferri primis ullamcorper, ius reque animal definitiones ne. Mei ei utinam graeci, facete placerat invenire pri ad.",
+  # "Ad malis everti mel, soleat comprehensam sit at. Per in eripuit voluptaria. Vix quem tibique eu. Ius nisl corpora iudicabit eu, at iudico phaedrum usu. Ea unum omnium habemus ius, no mea graeci gubergren quaerendum. Nobis congue mentitum ad mea, vis vide verear oporteat cu, tota deleniti voluptatum id vim. At nam corpora splendide, eam saepe lobortis gubergren ex, vix ea novum consectetuer interpretaris."]
 
-  Idea.create(:title => "Does Remicade Exacerbate Acne?", :description => "I've lived with Acne for a long time and this is very important to me", :author => User.first)
-  Idea.create(:title => "Do periodic time off Adderal improve ADHD symptoms?", :description => "I do this with my ADHD all the time. Wondering who else agrees.", :author => User.first)
+  # num_users = 10
 
+  # i = 0;
+  # num_users.times do |i|
+  #   user = User.create(email: "seed.user.#{i}@gmail.com", password: "12345678",)
+  #   role = [:patient,:patient,:patient,:patient,:patient,:patient,:patient,:patient,:patient,:patient,:patient, :researcher, :stakeholder, :stakeholder, :stakeholder].shuffle.first
+  #   user.add_role role
+
+  #   if [:false,:false,:true].shuffle.first
+  #     Idea.create(:title => idea_titles.shuffle.first, :description => idea_descriptions.shuffle.first, :author => user)
+  #   end
+
+  #   random_idea = Idea.find(rand(1..num_users))
+  #   user.follow(random_idea)
+  # end
 
 
 
