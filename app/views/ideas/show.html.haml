@@ -109,4 +109,24 @@
     .col-md-12
       %a.btn.btn-default.btn-block{:href => edit_idea_path(@idea)} This is Your Idea. Edit it.
 
+%hr/
+
+- @idea.comments.each do |comment|
+  .media
+    %a.pull-left
+      %img.media-object.img-circle{alt: comment.user.name, src: comment.user.photo_url}/
+    .media-body
+      %h4.media-heading= comment.user.name
+      = comment.comment
+  %hr/
+
+- if current_user
+  = form_tag "/ideas/add_new_comment" do
+    = hidden_field_tag "id", @idea.id
+    .form-group
+      = text_area_tag "comment[comment]", nil, :class => "form-control"
+    .form-group
+      = submit_tag "Post Comment", :class => "form-control"
+- else
+  Sign in to comment
 

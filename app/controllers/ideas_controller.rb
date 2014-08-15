@@ -18,6 +18,14 @@ class IdeasController < ApplicationController
     render "index"
   end
 
+  def add_new_comment
+    @idea = Idea.find(params[:id])
+    @comment = Comment.new(params[:comment].permit(:comment))
+    @comment.user = current_user
+    @idea.comments << @comment
+    redirect_to :action => :show, :id => @idea
+  end
+
 
   def follow
     current_user.follow(@idea)

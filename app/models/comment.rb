@@ -12,4 +12,15 @@ class Comment < ActiveRecord::Base
 
   # NOTE: Comments belong to a user
   belongs_to :user
+
+  private
+
+  def comment_params
+
+    params.require(:comment_params).permit(
+      :comment,
+      :commentable_id,
+      :user_id
+    )
+  end
 end

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'tagged' => 'ideas#tagged', :as => 'tagged'
   get 'interests' => 'social#interests'
   resources :users
+  match "/ideas/add_new_comment" => "ideas#add_new_comment", :as => "add_new_comment_to_ideas", :via => [:post]
 
   get 'by_condition' => 'users#by_condition'
 
