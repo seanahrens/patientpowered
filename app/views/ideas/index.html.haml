@@ -1,7 +1,10 @@
 
+%h2 Ideas
+
 .row
   .col-md-12
-    %a.btn.btn-default.btn-block{:href => ""} Choose Tags (Condition/Treatment)
+    %a.btn.btn-default.btn-block{:href => ""} Choose Condition
+%br/
 
 - @ideas.each do |idea|
   = render idea

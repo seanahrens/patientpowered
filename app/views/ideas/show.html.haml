@@ -5,7 +5,11 @@
 
 .row
   .col-md-12
-    %iframe{allowfullscreen: "", height: "220px;", width: "100%", src: "#{@idea.video_url}"}
+    - if !@idea.video_url.blank?
+      %iframe{allowfullscreen: "", height: "220px;", width: "100%", src: "#{@idea.video_url}"}
+    - else
+      .text-center
+        = image_tag @idea.author.photo_url, :class => "img-circle"
 
 
     %h4= @idea.title
@@ -18,25 +22,36 @@
   .col-md-12
     %p= @idea.description
 
+%hr/
 
 .row
+  .col-md-12.text-center
+    %h4 Commitments
+
+.row.text-center
+  .col-xs-4
+    %h3= @idea.followers_count_by_role(:patient)
+    Patients
+  .col-xs-4
+    %h3= @idea.followers_count_by_role(:researcher)
+    Researchers
+  .col-xs-4
+    %h3= @idea.followers_count_by_role(:stakeholder)
+    Stakeholders
+
+%br/
+.row
   .col-md-12
-    %h4
-      %i.fa.fa-thumbs-o-up
-      = @idea.followers_count
+    - if current_user && current_user.following?(@idea)
+      .text-h5.text-center
+        %i.fa.fa-thumbs-o-up
+        You've committed to this research.
+        %a{:href => stop_following_idea_path(id: @idea.id)} Redact.
 
-      = @idea.followers_count_by_role(:patient)
-      Patients
-      = @idea.followers_count_by_role(:researcher)
-      Researchers
-      = @idea.followers_count_by_role(:stakeholder)
-      Stakeholders
-
-
-      - if current_user && current_user.following?(@idea)
-        %a.btn.btn-default{:href => stop_following_idea_path(id: @idea.id)} Stop Following!
-      - else
-        %a.btn.btn-default{:href => follow_idea_path(id: @idea.id)} Follow!
+    - else
+      %a.btn.btn-primary.btn-block{:href => follow_idea_path(id: @idea.id)}
+        %i.fa.fa-thumbs-o-up
+        I Want to Help this Research!
 
 
 %hr/
@@ -47,28 +62,34 @@
       .list-group-item
         Comments
         %span.badge 6
+
+%h4 Share this!
 .row
   .col-xs-4
-    %a.btn.btn-primary.btn-block{:href => "http://www.facebook.com/sharer/sharer.php?u=#{idea_url(@idea)}"} Facebook
+    %a.btn.btn-primary.btn-block{:href => "http://www.facebook.com/sharer/sharer.php?u=#{idea_url(@idea)}", :target => "_blank"}
+      %i.fa.fa-facebook
+      Facebook
   .col-xs-4
-    %a.btn.btn-info.btn-block{:href => "https://twitter.com/share?url=#{idea_url(@idea)}"} Twitter
+    %a.btn.btn-info.btn-block{:href => "https://twitter.com/share?url=#{idea_url(@idea)}", :target => "_blank"}
+      %i.fa.fa-twitter
+      Twitter
   .col-xs-4
-    %a.btn.btn-warning.btn-block{:href => "mailto:?subject=Cool%20Research%20Idea&body=Check%20this%20out:%20#{idea_url(@idea)}"} Email
+    %a.btn.btn-warning.btn-block{:href => "mailto:?subject=Cool%20Research%20Idea&body=Check%20this%20out:%20#{idea_url(@idea)}"}
+      %i.fa.fa-envelope
+      Email
 
 
-.row
-  .col-md-12
-    %h3.text-center
-      %i.fa.fa-graduation-cap.text-h2
-      Studies Proposed
+/ .row
+/   .col-md-12
+/     %h3.text-center
+/       %i.fa.fa-graduation-cap.text-h2
+/       Studies Proposed
 
+%br/
 
-
-
-.row
-  .col-md-12
-    %h4 Edit Tools
-    %p This is your idea.
-    %a.btn.btn-default{:href => edit_idea_path(@idea)} Edit
+- if current_user && current_user == @idea.author
+  .row
+    .col-md-12
+      %a.btn.btn-default.btn-block{:href => edit_idea_path(@idea)} This is Your Idea. Edit it.
 
 
