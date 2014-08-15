@@ -3,9 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 // Make room for top nav bar
 
+body.idea {
+  background-color: #FFEBCC;
+
+}
+body.study {
+  background-color: #CCEBD6;
+}
+
+
 body {
 
-  margin-top: 60px;
+  //margin-top: 60px;
 
   .text-h1 {
     font-size: 45px;

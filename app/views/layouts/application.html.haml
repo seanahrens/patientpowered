@@ -7,7 +7,7 @@
     = render "layouts/before_scripts"
 
 
-%body{screen_capture_injected: "true"}
+%body{screen_capture_injected: "true", :class => @body_class}
   = render "layouts/navigation/top_navigation_bar"
   .container{role: "main"}
     = render "layouts/flash_messages"

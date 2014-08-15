@@ -15,7 +15,6 @@
 
 / %br/
 
-/ %a.btn.btn-primary.btn-block{:href => idea_index_path} Browse Ideas
 
 
 
@@ -25,12 +24,15 @@
   Popular Ideas
 
 = render "idea_item"
-%hr/
-= render "idea_item"
+
+%a.btn.btn-primary.btn-block{:href => idea_index_path}
+  See All Ideas...
+  %i.fa.fa-chevron-right
+
 
 
 %br/
-.well
+.well.well-sm
   .text-center
     %h3
       How Does It Work?
@@ -82,4 +84,9 @@
 %hr/
 = render "study_item"
 
+%br/
+
+%a.btn.btn-primary.btn-block{:href => study_index_path}
+  See All Studies...
+  %i.fa.fa-chevron-right
 
