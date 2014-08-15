@@ -43,6 +43,7 @@ class IdeasController < ApplicationController
   # GET /ideas/new
   def new
     @idea = Idea.new
+    @idea.tag_list = current_user.tag_list
   end
 
   # GET /ideas/1/edit
@@ -54,9 +55,10 @@ class IdeasController < ApplicationController
   def create
     @idea = Idea.new(idea_params)
     @idea.author = current_user
-
     respond_to do |format|
       if @idea.save
+        current_user.follow(@idea)
+
         format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
         format.json { render :show, status: :created, location: @idea }
       else

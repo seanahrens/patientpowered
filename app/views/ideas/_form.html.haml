@@ -1,0 +1,36 @@
+-#  <%= f.input :title %>
+-#  <%= f.input :description %>
+-#  <%= f.input :video_url %>
+-#  <%= f.label :tags %>
+-#  <%= f.text_field :tag_list %>
+
+.text-center
+
+  = form_for @idea, html: {role: "form", class: 'form-horizontal'} do |f|
+    .form-group
+      %label.col-sm-3.control-label.text-h3 What Do You Want Studied?
+      .text-center.small Ask it in the form of a question that you want answered.
+      .col-sm-6
+        =f.text_area(:title, class: 'form-control input-lg', placeholder: "eg. \"Does a strict diet eliminating grains work for Crohn's Disease?\"", :maxlength => 200)
+
+    .form-group
+      %label.col-sm-3.control-label.text-h3 Why?
+      .text-center.small Do you have personal experience trying to answer it yourself?
+
+      .col-sm-6
+        =f.text_area(:description, class: 'form-control', placeholder: "eg. \"As a patient with Crohn's myself, I've heard lots of rumbling on forums about this, and even tried it myself.\"", :rows => 5)
+
+    .form-group
+      %label.col-sm-3.control-label.text-h4 Is This About Particular Condition(s)?
+      .text-center.small Tag this with any medical conditions this is about to help
+      .text-center.small interested researchers & stakeholders discovery your idea.
+
+      .col-sm-6
+        =f.text_field(:tag_list, class: 'form-control')
+
+    / .form-group
+    /   %label.col-sm-3.control-label Video URL
+    /   .col-sm-6
+    /     =f.text_field(:video_url, class: 'form-control')
+
+    =f.submit("Post My Question", class: 'btn btn-primary btn-block')
