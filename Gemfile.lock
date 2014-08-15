@@ -62,6 +62,7 @@ GEM
     acts-as-dag (4.0.0)
       activemodel
       activerecord (~> 4.0, >= 4.0.0)
+    acts_as_commentable (4.0.1)
     acts_as_follower (0.2.1)
     ansi (1.4.3)
     arel (5.0.1.20140414130214)
@@ -274,6 +275,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-dag
+  acts_as_commentable
   acts_as_follower
   authority
   autoprefixer-rails

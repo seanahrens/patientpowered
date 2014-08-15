@@ -49,11 +49,11 @@
         %span.badge 6
 .row
   .col-xs-4
-    %a.btn.btn-primary.btn-block Facebook
+    %a.btn.btn-primary.btn-block{:href => "http://www.facebook.com/sharer/sharer.php?u=#{idea_url(@idea)}"} Facebook
   .col-xs-4
-    %a.btn.btn-info.btn-block Twitter
+    %a.btn.btn-info.btn-block{:href => "https://twitter.com/share?url=#{idea_url(@idea)}"} Twitter
   .col-xs-4
-    %a.btn.btn-warning.btn-block Other
+    %a.btn.btn-warning.btn-block{:href => "mailto:?subject=Cool%20Research%20Idea&body=Check%20this%20out:%20#{idea_url(@idea)}"} Email
 
 
 .row
