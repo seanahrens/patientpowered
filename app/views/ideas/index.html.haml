@@ -1,17 +1,18 @@
 
-%h2 Ideas
 
-.row
-  .col-md-12
-    .list-group
-      - if !current_user
-        Sign in to see your tag list
-      - if current_user && current_user.tags.any?
-        - current_user.tags.each do |tag|
-          %a.list-group-item.list-group-item-success{:href=> tagged_url(:tag => tag.name)}
-            = tag.name
-            .badge= tag.count
+%ol.breadcrumb
+  - if @condition
+    %li
+      %a{:href=>overview_path} All Ideas
+    %li.active
+      = truncate(@condition)
+  - else
+    %li
+      %a{:href=>overview_path} All Ideas
+    %li.active
+      %a{:href=>by_condition_path} Choose a Condition...
 
+= render "/users/role_nav"
 
 %br/
 

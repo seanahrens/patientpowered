@@ -1,6 +1,6 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy, :follow, :stop_following]
-  before_action :auth_user_to_join, :only => [:follow, :stop_following]
+  before_action :auth_user_to_join, :only => [:follow, :stop_following, :new]
 
 
   def auth_user_to_join
@@ -11,8 +11,9 @@ class IdeasController < ApplicationController
   def tagged
     if params[:tag].present?
       @ideas = Idea.tagged_with(params[:tag])
+      @condition = params[:tag]
     else
-      @ideas = Idea.postall
+      @ideas = Idea.all
     end
     render "index"
   end

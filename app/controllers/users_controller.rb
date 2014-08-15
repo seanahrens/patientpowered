@@ -23,10 +23,15 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    # set up new users with default tag list
+    if @user.tag_list.empty?
+      @user.tag_list = User.tag_counts_on(:tags).order('count desc').limit(3).collect { |t| t }
+    end
   end
 
   def update
     @user = current_user
+
 
     update_role(:patient)
     update_role(:researcher)

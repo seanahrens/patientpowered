@@ -6,21 +6,42 @@
 
 
 
+= render "/users/role_nav"
 
+
+
+
+%h3 Research Ideas
 .row
   .col-md-12
     .list-group
-      %a.list-group-item{:href=> users_path(role: :patient)}
-        Patients
-        .badge= @patient_count
-      %a.list-group-item{:href=> users_path(role: :researcher)}
-        Researchers
-        .badge= @researcher_count
-      %a.list-group-item{:href=> users_path(role: :stakeholder)}
-        Stakeholders
-        .badge= @stakeholder_count
-      %a.list-group-item.list-group-item-info{:href=> users_by_condition_path}
-        By Condition
+      - if !current_user
+        Sign in to see your tag list
+      - if current_user && current_user.tags.any?
+        - current_user.tags.each do |tag|
+          %a.list-group-item.list-group-item-success{:href=> tagged_url(:tag => tag.name)}
+            = tag.name
+            .badge= tag.count
+      %a.list-group-item.list-group-item-info{:href=> by_condition_path}
+        Browse Ideas in all Conditions...
+
+
+
+
+/ .row
+/   .col-md-12
+/     .list-group
+/       %a.list-group-item{:href=> users_path(role: :patient)}
+/         Patients
+/         .badge= @patient_count
+/       %a.list-group-item{:href=> users_path(role: :researcher)}
+/         Researchers
+/         .badge= @researcher_count
+/       %a.list-group-item{:href=> users_path(role: :stakeholder)}
+/         Stakeholders
+/         .badge= @stakeholder_count
+/       %a.list-group-item.list-group-item-info{:href=> users_by_condition_path}
+/         By Condition
 
 
 / .input-group

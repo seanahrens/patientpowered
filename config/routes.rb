@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'interests' => 'social#interests'
   resources :users
 
-  get 'users_by_condition' => 'users#by_condition'
+  get 'by_condition' => 'users#by_condition'
 
 
   # This line mounts Forem's routes at /forums by default.

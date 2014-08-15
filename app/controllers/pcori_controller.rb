@@ -22,9 +22,7 @@ class PcoriController < ApplicationController
   end
 
   def overview
-    @patient_count = Role.find_by_name(:patient).users.count
-    @researcher_count = Role.find_by_name(:researcher).users.count
-    @stakeholder_count = Role.find_by_name(:stakeholder).users.count
+
 
   end
 

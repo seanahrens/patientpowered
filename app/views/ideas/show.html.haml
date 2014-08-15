@@ -1,3 +1,14 @@
+- @condition = @idea.tag_list.first
+
+%ol.breadcrumb
+  %li
+    %a{:href=>overview_path} All Ideas
+  %li
+    %a{:href=>tagged_path,:tag=>@condition}= @condition
+  %li.active
+    Idea
+
+
 .row
   .col-md-12.text-center
     %i.fa.fa-lightbulb-o.text-h1
@@ -20,7 +31,6 @@
 
 .row
   .col-md-12
-    %h2 Tags:
     - if @idea.tags.any?
       - @idea.tags.each do |tag|
         %a.label.label-success{:href=> tagged_url(:tag => tag.name)}= tag.name

@@ -2,7 +2,7 @@
   .col-md-12
     .list-group
       -@tags.each do |tag|
-        %a.list-group-item{:href=> users_path(condition: tag.name)}
+        %a.list-group-item{:href=> tagged_path(tag: tag.name)}
           = tag.name
           .badge= tag.count
 
