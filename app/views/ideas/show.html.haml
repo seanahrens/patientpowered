@@ -32,11 +32,11 @@
       = @idea.followers_count_by_role(:stakeholder)
       Stakeholders
 
-      - if !current_user.following?(@idea)
-        %a.btn.btn-default{:href => follow_idea_path(id: @idea.id)} Follow!
-      - else
-        %a.btn.btn-default{:href => stop_following_idea_path(id: @idea.id)} Stop Following!
 
+      - if current_user && current_user.following?(@idea)
+        %a.btn.btn-default{:href => stop_following_idea_path(id: @idea.id)} Stop Following!
+      - else
+        %a.btn.btn-default{:href => follow_idea_path(id: @idea.id)} Follow!
 
 
 %hr/

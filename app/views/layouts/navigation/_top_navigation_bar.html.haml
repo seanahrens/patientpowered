@@ -1,11 +1,12 @@
 .navbar.navbar-default{role: "navigation"}
   .navbar-header
 
-    .navbar-brand{:style => "position: absolute; right: 100px;"}
-      %a{:href => root_path} Patient Powered
 
-    %a.btn.btn-default.navbar-btn{:href => "javascript:history.back()", :style => "margin-left: 15px;"}
-      %i.fa.fa-arrow-left
+    //{:style => "position: absolute; right: 100px;"}
+    %a.navbar-brand{:href => root_path} Patient Powered
+
+    / %a.btn.btn-default.navbar-btn{:href => "javascript:history.back()", :style => "margin-left: 15px;"}
+    /   %i.fa.fa-arrow-left
 
 
     %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
@@ -16,14 +17,12 @@
 
   .collapse.navbar-collapse
     %ul.nav.navbar-nav
-      %li
-        = link_to "Popular Studies", study_index_path
+
       %li
         = link_to "Ideas", ideas_path
-      %li
-        = link_to "Overview", overview_path
-      %li
-        = link_to "Successfully Matched", study_index_path
+
+
+
       - if current_user
         %li
           = link_to "<i class='fa fa-sign-out'></i> Sign out".html_safe, main_app.destroy_user_session_path, :method => :delete

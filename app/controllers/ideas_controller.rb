@@ -1,6 +1,11 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy, :follow, :stop_following]
+  before_action :auth_user_to_join, :only => [:follow, :stop_following]
 
+
+  def auth_user_to_join
+    redirect_to new_user_registration_url unless user_signed_in?
+  end
 
 
   def follow
