@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   rolify role_join_table_name: 'roles_users'
 
+  acts_as_follower
+
 
   include Authority::UserAbilities
   include Authority::Abilities

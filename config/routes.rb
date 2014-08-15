@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   resources :ideas
+  get 'ideas/:id/follow' => 'ideas#follow', as: :follow_idea
+  get 'ideas/:id/stop_following_idea' => 'ideas#stop_following', as: :stop_following_idea
+
 
   # This line mounts Forem's routes at /forums by default.
   # This means, any requests to the /forums URL of your application will go to Forem::ForumsController#index.

@@ -1,5 +1,18 @@
 class IdeasController < ApplicationController
-  before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  before_action :set_idea, only: [:show, :edit, :update, :destroy, :follow, :stop_following]
+
+
+
+  def follow
+    current_user.follow(@idea)
+    redirect_to :back
+  end
+
+  def stop_following
+    current_user.stop_following(@idea)
+    redirect_to :back
+  end
+
 
   # GET /ideas
   # GET /ideas.json

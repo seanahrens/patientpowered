@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+
+
+
+gem "acts_as_follower"
+
+
 gem 'thin'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
