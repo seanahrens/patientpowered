@@ -1,7 +1,7 @@
 
+- 3.times do
+  = render "idea_item"
 
-this is a list of all the ideas that have come in
-
-%ul
-  %li
-    %a{:href => idea_show_path} Idea 1
+.row
+  .col-md-12
+    %a.btn.btn-primary.btn-block{:href => idea_new_path} I want to Submit an Idea

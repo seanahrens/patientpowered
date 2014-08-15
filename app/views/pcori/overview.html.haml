@@ -4,20 +4,56 @@
 %p
   Lorem ipsum dolor sit amet, ius sonet veniam signiferumque eu, pri ad libris aperiam euripidis. Est ei ferri dolores, purto equidem ea eum. Latine tibique detracto cu pro. Usu movet oporteat apeirian no, te pri quis quando. Mandamus pertinacia mel in, in vim laoreet lucilius. Mundi repudiandae consectetuer et eos, nam ex sumo recusabo.
 
-%a.btn.btn-primary.btn-block{:href => study_index_path}
-  Browse Studies
-  %i.fa.fa-chevron-right
+.row
+  .col-xs-2.text-center
+    %h3
+      %i.fa.fa-user
+    %h1
+      %i.fa.fa-lightbulb-o
+
+  .col-xs-3.text-center
+    %br/
+    %h2
+      %i.fa.fa-chevron-right
+
+  .col-xs-2.text-center
+    %h3
+      %i.fa.fa-users
+    %h1
+      %i.fa.fa-thumbs-o-up
+
+  .col-xs-3.text-center
+    %br/
+    %h2
+      %i.fa.fa-chevron-right
+
+  .col-xs-2.text-center
+    %h3
+      %i.fa.fa-user-md
+    %h1
+      %i.fa.fa-graduation-cap
+
+%br/
+
+.input-group
+  %span.input-group-addon
+    %i.fa.fa-search
+  %input.form-control{type: "text"}/
+  %span.input-group-btn
+    %button.btn.btn-default{type: "button"} Search!
+
+%br/
 
 %a.btn.btn-primary.btn-block{:href => idea_index_path} Browse Ideas
 
+%hr/
 
+%h3 Popular Studies
 
-%p
-  Lorem ipsum dolor sit amet, ius sonet veniam signiferumque eu, pri ad libris aperiam euripidis. Est ei ferri dolores, purto equidem ea eum. Latine tibique detracto cu pro. Usu movet oporteat apeirian no, te pri quis quando. Mandamus pertinacia mel in, in vim laoreet lucilius. Mundi repudiandae consectetuer et eos, nam ex sumo recusabo.
-%p
-  Lorem ipsum dolor sit amet, ius sonet veniam signiferumque eu, pri ad libris aperiam euripidis. Est ei ferri dolores, purto equidem ea eum. Latine tibique detracto cu pro. Usu movet oporteat apeirian no, te pri quis quando. Mandamus pertinacia mel in, in vim laoreet lucilius. Mundi repudiandae consectetuer et eos, nam ex sumo recusabo.
-
-%p
-  Lorem ipsum dolor sit amet, ius sonet veniam signiferumque eu, pri ad libris aperiam euripidis. Est ei ferri dolores, purto equidem ea eum. Latine tibique detracto cu pro. Usu movet oporteat apeirian no, te pri quis quando. Mandamus pertinacia mel in, in vim laoreet lucilius. Mundi repudiandae consectetuer et eos, nam ex sumo recusabo.
-%p
-  Lorem ipsum dolor sit amet, ius sonet veniam signiferumque eu, pri ad libris aperiam euripidis. Est ei ferri dolores, purto equidem ea eum. Latine tibique detracto cu pro. Usu movet oporteat apeirian no, te pri quis quando. Mandamus pertinacia mel in, in vim laoreet lucilius. Mundi repudiandae consectetuer et eos, nam ex sumo recusabo.
+.row
+  .col-md-4
+    = render "study_item"
+  .col-md-4
+    = render "study_item"
+  .col-md-4
+    = render "study_item"

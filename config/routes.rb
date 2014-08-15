@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'stats' => 'pcori#stats'
 
 
+  get 'idea_' => 'pcori#idea_show'
 
 
 
