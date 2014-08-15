@@ -23,9 +23,9 @@
   %i.fa.fa-lightbulb-o.text-h2
   Popular Ideas
 
-= render "idea_item"
+= render Idea.first
 
-%a.btn.btn-primary.btn-block{:href => idea_index_path}
+%a.btn.btn-primary.btn-block{:href => ideas_path}
   See All Ideas...
   %i.fa.fa-chevron-right
 

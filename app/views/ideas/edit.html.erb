@@ -1,0 +1,8 @@
+<h1>Editing idea</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @idea %> |
+<%= link_to 'Destroy', @idea, method: :delete, data: { confirm: 'Are you sure?' } %> |
+
+<%= link_to 'Back', ideas_path %>

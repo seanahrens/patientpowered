@@ -1,0 +1,21 @@
+
+%a.no-link-styling{:href => idea}
+  .row
+    .col-md-12.text-center
+      %i.fa.fa-lightbulb-o.text-h1
+      %span.text-h2 Idea
+
+  .row
+    .col-md-12
+      %iframe{allowfullscreen: "", height: "220px;", width: "100%", src: "#{idea.video_url}"}
+      %h4= idea.title
+
+  .row
+    .col-md-12
+      %h4
+        %i.fa.fa-thumbs-o-up
+        302 Followers
+        %a.btn.btn-default Follow
+
+
+

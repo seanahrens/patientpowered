@@ -1,0 +1,11 @@
+
+.row
+  .col-md-12
+    %a.btn.btn-default.btn-block{:href => ""} Choose Tags (Condition/Treatment)
+
+- @ideas.each do |idea|
+  = render idea
+
+.row
+  .col-md-12
+    %a.btn.btn-primary.btn-block{:href => new_idea_path} I want to Submit an Idea

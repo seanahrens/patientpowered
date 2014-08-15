@@ -1,0 +1,61 @@
+.row
+  .col-md-12.text-center
+    %i.fa.fa-lightbulb-o.text-h1
+    %span.text-h2 Idea
+
+.row
+  .col-md-12
+    %iframe{allowfullscreen: "", height: "220px;", width: "100%", src: "#{@idea.video_url}"}
+
+
+    %h4= @idea.title
+
+    %p
+      Proposed by
+      %strong= @idea.author.name
+
+.row
+  .col-md-12
+    %p= @idea.description
+
+
+.row
+  .col-md-12
+    %h4
+      %i.fa.fa-thumbs-o-up
+      302 Followers
+      %a.btn.btn-default Follow
+
+%hr/
+
+.row
+  .col-md-12
+    .list-group.list-group-default
+      .list-group-item
+        Comments
+        %span.badge 6
+.row
+  .col-xs-4
+    %a.btn.btn-primary.btn-block Facebook
+  .col-xs-4
+    %a.btn.btn-info.btn-block Twitter
+  .col-xs-4
+    %a.btn.btn-warning.btn-block Other
+
+
+.row
+  .col-md-12
+    %h3.text-center
+      %i.fa.fa-graduation-cap.text-h2
+      Studies Proposed
+
+
+
+
+.row
+  .col-md-12
+    %h4 Edit Tools
+    %p This is your idea.
+    %a.btn.btn-default{:href => edit_idea_path(@idea)} Edit
+
+
