@@ -186,11 +186,7 @@ unless Rails.env == "test"
   idea.tag_list.add(condition, "Crohn's Disease")
   idea.save
 
-
-
-
-
-  # Create Ideas with Tags, Add Comments
+  # Add Comments to these Video Ideas
   Idea.first(4).each do |idea|
     [8,10,15,12].sample.times do
       idea.comments << Comment.create(:user => @users.sample, :comment => @comments.sample)
@@ -200,29 +196,30 @@ unless Rails.env == "test"
 
 
 
+
+
+
+  # Give Users Conditions, Create Idea, and Comments on that Idea
   @users.each do |u|
+    #Give User Condition
+    u_conditions = @conditions_to_sample.sample([1,2,3].sample)+top_cond.sample([0,0,1].sample)
+    u.tag_list.add(u_conditions)
+    u.save
+
+    #Create Idea
     idea = Idea.create(:author => u, :title => idea_titles.sample, :description => idea_descriptions.sample)
     idea.save
-    1.times { idea.tag_list.add([@conditions_to_sample,@conditions_to_sample,top_cond].sample.sample) }
+    idea.tag_list.add(u_conditions.sample)
 
+    #Comments
     [4,8,10,15].sample.times do
       idea.comments << Comment.create(:user => @users.sample, :comment => @comments.sample)
     end
     idea.save
-
   end
 
 
-
-
-
-
-
-
-
-
-
-  # Follow Ideas and give users Tags
+  # Follow The Ideas
   @ideas = Idea.all
 
   @users.each do |u|
