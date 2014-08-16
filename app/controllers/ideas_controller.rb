@@ -10,7 +10,7 @@ class IdeasController < ApplicationController
 
   def tagged
     if params[:tag].present?
-      @ideas = Idea.tagged_with(params[:tag])
+      @ideas = Idea.tagged_with(params[:tag]).sort_by(&:followers_count).reverse
       @condition = params[:tag]
     else
       @ideas = Idea.all
@@ -41,7 +41,7 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
-    @ideas = Idea.all
+    @ideas = Idea.all.sort_by(&:followers_count).reverse
   end
 
   # GET /ideas/1

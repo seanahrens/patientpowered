@@ -90,37 +90,27 @@ unless Rails.env == "test"
   # QuestionFlow.all.each {|qf| qf.reset_paths }
 
   if (user = User.find_by_email("seanahrens@gmail.com"))
-    user.add_role :admin
-    user.add_role :owner
     user.add_role :patient
   else
     user = User.create(email: "seanahrens@gmail.com", password: "12345678")
-    user.add_role :admin
-    user.add_role :owner
     user.add_role :patient
   end
 
-  if (user = User.find_by_email("piotr.mankowski@gmail.com"))
-    user.add_role :admin
-    user.add_role :owner
-  else
-    user = User.create(email: "piotr.mankowski@gmail.com", password: "12345678")
-    user.add_role :admin
-    user.add_role :owner
-  end
+  idea_titles = ["Does Remicade Exacerbate Acne?", "Do periodic time off Adderal improve ADHD symptoms?","Does using a Sleep Mask work?", "What is the most effective dosing schedule of Humira?", "Can a six week schedule of 10,000 steps improve GI symptoms?","Does sleeping on your side change the effects?","Does acupuncture improve patient's sleep?"]
+  idea_descriptions = ["I've tried this out a number of times and I'm becoming pretty confident, but I've seen no literature that has studied this.",
+    "I read on forums throughout the web that this might be true, but I'm not able to try it myself because I can't afford the time to run this experiment. If I knew it worked I would try it",
+    "There's hundreds of patients on the web talking about this. There's a book out there as well. I think the way we would do this experiment would be taking two groups of patients and trying the two scenarios. Any researchers want to help?",
+    "I could easily help pull together a group of patients that want to help answer this question. Is there a researcher who wants to create a formal study?",
+    "We may need an industry partner on this one, as it will require significant resources."]
 
 
-  idea_titles = ["Does Remicade Exacerbate Acne?", "Do periodic time off Adderal improve ADHD symptoms?","Does using a Sleep Mask work?"]
-  idea_descriptions = ["Tritani oporteat singulis eu vim. Ne pri odio ponderum vituperatoribus, ea reque regione urbanitas vim. Legere minimum vim an. Nemore graecis consectetuer ad qui, ut mei feugiat appareat. Fabulas molestie ullamcorper ut duo, id vis ipsum ridens utamur, et per laudem commune. Omittam reprimique consequuntur has et, movet civibus forensibus sed ex.",
-  "Noluisse tacimates interesset eu cum, consulatu imperdiet intellegebat cum ei, id nec erat cotidieque. Offendit eloquentiam ei nec. Perfecto petentium ad duo, ad nec minim scripta, id nam choro democritum disputationi. Cu his saepe prompta, idque soluta appellantur mel ex, diceret detracto sed no. Sit aeterno tibique mediocritatem te, te mea dico assentior, et soluta vocent sit.",
-  "Eos sint labores honestatis cu, nulla percipitur mei an. Ex sit quaestio ocurreret conceptam, soleat quidam eam eu. Mel no quodsi facilis, est et ferri primis ullamcorper, ius reque animal definitiones ne. Mei ei utinam graeci, facete placerat invenire pri ad.",
-  "Ad malis everti mel, soleat comprehensam sit at. Per in eripuit voluptaria. Vix quem tibique eu. Ius nisl corpora iudicabit eu, at iudico phaedrum usu. Ea unum omnium habemus ius, no mea graeci gubergren quaerendum. Nobis congue mentitum ad mea, vis vide verear oporteat cu, tota deleniti voluptatum id vim. At nam corpora splendide, eam saepe lobortis gubergren ex, vix ea novum consectetuer interpretaris."]
+  @names = ["Pat", "JB", "Milan", "Charlie", "Dakota", "Casey", "Jessie", "Riley", "Jamie", "Sage", "Harley", "Quinn", "Alexis", "Jordan", "Marley", "Sawyer", "Ariel"]
 
   num_users = 100
 
   i = 0
   num_users.times do
-    user = User.create(email: "seed.user.#{i+=1}@gmail.com", password: "12345678")
+    user = User.create(email: "seed.user.#{i+=1}@gmail.com", password: "12345678", full_name: @names.sample)
     random_role = [:patient,:patient,:patient,:patient,:patient,:researcher, :researcher, :stakeholder, :stakeholder, :stakeholder].sample
     user.add_role random_role
     user.save

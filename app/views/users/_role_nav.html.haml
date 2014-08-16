@@ -1,4 +1,5 @@
 
+
 -#    @patient_count = Role.find_by_name(:patient).users.with_tag(@condition).count
 -#    @researcher_count = Role.find_by_name(:researcher).users.count
 -#    @stakeholder_count = Role.find_by_name(:stakeholder).users.count
@@ -6,8 +7,14 @@
   - [:patient,:researcher,:stakeholder].each do |role|
     .col-xs-4
       %a.btn.btn-default.btn-block{:href=> users_path(role: role, condition: @condition)}
-        = role.capitalize
+        .row
+          = image_tag "roles/#{role}.png", :class => "col-xs-12"
+
+        - count = Role.find_by_name(role).users.tagged_with(@condition).count if @condition
+        - count = Role.find_by_name(role).users.count if !@condition
+
+
+        %small= "#{role.capitalize}s"
         %br/
-        .badge
-          = Role.find_by_name(role).users.tagged_with(@condition).count if @condition
-          = Role.find_by_name(role).users.count if !@condition
+        .badge= count
+

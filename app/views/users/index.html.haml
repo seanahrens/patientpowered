@@ -1,4 +1,8 @@
 -# I could put role menu up here
 
-- @users.each do |user|
-  = render user
+%h2 People
+
+%ul.list-group
+  - @users.each do |user|
+    %li.list-group-item
+      = render user

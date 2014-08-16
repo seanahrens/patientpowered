@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   match "/ideas/add_new_comment" => "ideas#add_new_comment", :as => "add_new_comment_to_ideas", :via => [:post]
 
   get 'by_condition' => 'users#by_condition'
+  get 'following_idea' => 'users#following_idea', :as => 'following_idea'
 
 
   # This line mounts Forem's routes at /forums by default.

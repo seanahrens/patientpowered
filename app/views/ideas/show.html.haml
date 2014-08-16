@@ -22,20 +22,11 @@
 
 .row
   .col-md-12
-    .media
-      %a.pull-left
-        %img.media-object.img-circle{alt: @idea.author.name, src: @idea.author.photo_url, width: "60px"}/
-      .media-body
-        %h4.media-heading= @idea.title
-        %p= @idea.description
-        %small= "-#{@idea.author.name}"
+    = render @idea
 
-%hr/
+
 .row
   .col-md-12
-    - if @idea.tags.any?
-      - @idea.tags.each do |tag|
-        %a.label.label-success{:href=> tagged_url(:tag => tag.name)}= tag.name
 
 
 - if !@idea.video_url.blank?
@@ -43,35 +34,36 @@
 
 
 %hr/
-.well
-  .row
-    .col-md-12.text-center
-      %h4 People Who Want To Help
+%a.no-link-styling{:href => following_idea_path, :idea => @idea}
+  .well
+    .row
+      .col-md-12.text-center
+        %h4 People Who Want To Help
 
-  .row.text-center
-    .col-xs-4
-      %h3= @idea.followers_count_by_role(:patient)
-      Patients
-    .col-xs-4
-      %h3= @idea.followers_count_by_role(:researcher)
-      Researchers
-    .col-xs-4
-      %h3= @idea.followers_count_by_role(:stakeholder)
-      Stakeholders
+    .row.text-center
+      .col-xs-4
+        %h3= @idea.followers_count_by_role(:patient)
+        Patients
+      .col-xs-4
+        %h3= @idea.followers_count_by_role(:researcher)
+        Researchers
+      .col-xs-4
+        %h3= @idea.followers_count_by_role(:stakeholder)
+        Stakeholders
 
-  %br/
-  .row
-    .col-md-12
-      - if current_user && current_user.following?(@idea)
-        .text-h5.text-center
-          %i.fa.fa-thumbs-o-up
-          You've committed to this research.
-          %a{:href => stop_following_idea_path(id: @idea.id)} Redact.
+    %br/
+    .row
+      .col-md-12
+        - if current_user && current_user.following?(@idea)
+          .text-h5.text-center
+            %i.fa.fa-thumbs-o-up
+            You've committed to this research.
+            %a{:href => stop_following_idea_path(id: @idea.id)} Redact.
 
-      - else
-        %a.btn.btn-primary.btn-block{:href => follow_idea_path(id: @idea.id)}
-          %i.fa.fa-thumbs-o-up
-          I Want to Help this Research!
+        - else
+          %a.btn.btn-primary.btn-block{:href => follow_idea_path(id: @idea.id)}
+            %i.fa.fa-thumbs-o-up
+            I Want to Know How to Help!
 
 
 %hr/

@@ -1,3 +1,8 @@
+.row
+  = image_tag "globe.png", :class => "col-xs-12"
+
+
+
 
 %h3 Patient Powered Research
 
@@ -15,16 +20,22 @@
 .row
   .col-md-12
     .list-group
-      - if !current_user
-        Sign in to see your tag list
       - if current_user && current_user.tags.any?
-        - current_user.tags.each do |tag|
-          %a.list-group-item.list-group-item-success{:href=> tagged_url(:tag => tag.name)}
-            = tag.name
-            .badge= tag.count
+        - tags = current_user.tags
+      - else
+        - tags = User.find(1).tags
+
+      - tags.each do |tag|
+        %a.list-group-item.list-group-item-success{:href=> tagged_url(:tag => tag.name)}
+          = tag.name
+          .badge= tag.count
+
+
+
       %a.list-group-item.list-group-item-info{:href=> by_condition_path}
         Browse Ideas in all Conditions...
-
+      - if !current_user
+        Sign in to see your tag list
 
 
 
@@ -61,9 +72,10 @@
   %i.fa.fa-lightbulb-o.text-h2
   Popular Ideas
 
-- Idea.first(3).each do |idea|
-  = render idea
-  %hr/
+%ul.list-group
+  - Idea.all.sort_by(&:followers_count).last(4).reverse.each do |idea|
+    %li.list-group-item
+      = render idea
 
 %br/
 

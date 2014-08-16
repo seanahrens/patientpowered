@@ -1,19 +1,16 @@
+- @idea = idea
+.media
+  %a.pull-left.no-link-styling{:href => idea_path(idea)}
+    %img.media-object.img-circle{alt: @idea.author.name, src: @idea.author.photo_url, width: "60px"}/
+    %h3
+      =idea.followers_count
+      %i.fa.fa-thumbs-o-up
+    .media-body
+      %h4.media-heading= @idea.title
+      %p= @idea.description
 
-%a.no-link-styling{:href => idea_path(idea)}
-  .row
-    .col-md-12
-      .text-center
-        = image_tag idea.author.photo_url, :class => "img-circle"
-      -#%iframe{allowfullscreen: "", height: "220px;", width: "100%", src: "#{idea.video_url}"}
-      %h4= idea.title
-
-  .row
-    .col-md-12
-      %h4
-        Followers
-      %h4
-        %i.fa.fa-thumbs-o-up
-        = idea.followers_count
-  .row
-    .col-md-12
-      = render :partial => "tags/tag_list", :locals => {taggable: idea}
+      - if @idea.tags.any?
+        %p
+          - @idea.tags.each do |tag|
+            %a.label.label-success{:href=> tagged_url(:tag => tag.name)}= tag.name
+      %small= "-#{@idea.author.name}"

@@ -1,7 +1,10 @@
-.row
-  .col-md-12
-    = image_tag user.photo_url, :class => "img-circle"
-    %h4= user.name
+- @user = user
+.media
+  %img.media-object.img-circle.pull-left{alt: @user.name, src: @user.photo_url, width: "60px"}/
+  .media-body
+    %h4.media-heading= @user.name
+    - if @user.roles.any?
+      %p
+        - @user.roles.each do |tag|
+          .label.label-info= tag.name.capitalize
     = render :partial => "tags/tag_list", :locals => {taggable: user}
-  %hr/
-

@@ -16,6 +16,17 @@ class UsersController < ApplicationController
   end
 
 
+  def following_idea
+    if params[:idea].present?
+      @idea = Idea.find(params[:idea])
+      @users = @idea.following_users
+    else
+      @users = User.all
+    end
+    render "index"
+  end
+
+
   def by_condition
     @tags = User.tag_counts_on(:tags).order('count desc')
     #alpha?

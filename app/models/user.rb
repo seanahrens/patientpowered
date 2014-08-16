@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
 
   scope :search_by_email, ->(terms) { where("LOWER(#{self.table_name}.email) LIKE ?", terms.to_s.downcase.gsub(/^| |$/, '%')) }
 
+
+
   def name
     if !full_name.blank?
       full_name
@@ -48,6 +50,8 @@ class User < ActiveRecord::Base
   def photo_url
     if social_profile and social_profile.photo.present?
       social_profile.photo.url
+    elsif id < 77
+      "/assets/avatars/profile-#{id}.jpg"
     else
       "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(email.to_s)}?d=identicon"
     end
