@@ -89,14 +89,8 @@ unless Rails.env == "test"
 
   # QuestionFlow.all.each {|qf| qf.reset_paths }
 
-  if (user = User.find_by_email("seanahrens@gmail.com"))
-    user.add_role :patient
-  else
-    user = User.create(email: "seanahrens@gmail.com", password: "12345678")
-    user.add_role :patient
-  end
 
-  idea_titles = ["Does Remicade Exacerbate Acne?", "Do periodic time off Adderal improve ADHD symptoms?","Does using a Sleep Mask work?", "What is the most effective dosing schedule of Humira?", "Can a six week schedule of 10,000 steps improve GI symptoms?","Does sleeping on your side change the effects?","Does acupuncture improve patient's sleep?"]
+  idea_titles = ["Do periodic time off Adderal improve ADHD symptoms?","Does using a Sleep Mask work?", "What is the most effective dosing schedule of Humira?", "Can a six week schedule of 10,000 steps improve GI symptoms?","Does sleeping on your side change the effects?","Does acupuncture improve patient's sleep?"]
   idea_descriptions = ["I've tried this out a number of times and I'm becoming pretty confident, but I've seen no literature that has studied this.",
     "I read on forums throughout the web that this might be true, but I'm not able to try it myself because I can't afford the time to run this experiment. If I knew it worked I would try it",
     "There's hundreds of patients on the web talking about this. There's a book out there as well. I think the way we would do this experiment would be taking two groups of patients and trying the two scenarios. Any researchers want to help?",
@@ -110,6 +104,15 @@ unless Rails.env == "test"
     "Hi, I represent Aetna Consumer Research and we're quite interested in a partnership here as well.", "I'm so in", "How do you think you would deal with complications of placebo here?", "We could probably team up with some patients from some other communities I'm connected with on this one.",
     "Super like!", "So I've done this myself and it absolutely worked, willing to help by trying again.", "I read this too.", "I'm definitely curious about this one.", "Hey guys, I'm working with my university to see if they could support us with some grant funds."]
 
+
+  top_cond = ["Fibromyalgia", "Parkison's Disease", "Diabetes", "Obesity"]
+
+  uberman = User.create(:email => "uberman@gmail.com", :password => "12345678")
+  uberman.tag_list.add(top_cond)
+  uberman.save
+
+
+
   num_users = 100
 
   i = 0
@@ -122,15 +125,80 @@ unless Rails.env == "test"
 
 
 
-  # Create Ideas with Tags
+
+
+  # Create the Video Patients
   @users= User.all
+
+  #Ben
+  basics = {email: "seed.user.ben@gmail.com", password: "12345678"}
+  user = User.create(basics.merge({full_name:"Ben"}))
+  condition = "Attention Deficit/Hyperactivity Disorder (ADHD)"
+  user.tag_list.add(condition)
+  user.add_role :patient
+  user.save
+  idea = Idea.create(:author => user, :video_url => "http://www.youtube.com/embed/D136vwWgnp8?rel=0", :title => "How does Adderall interact with Recreational Drug Use?", :description => "I'd really like to know what the combined effects are when used with recreational drugs like marijuana.")
+  idea.save
+  idea.tag_list.add(condition)
+  idea.save
+
+
+  #Will
+  basics = {email: "seed.user.will@gmail.com", password: "12345678"}
+  user = User.create(basics.merge({full_name:"Will"}))
+  condition = "Sleep Apnea"
+  user.tag_list.add(condition)
+  user.add_role :patient
+  user.save
+  idea = Idea.create(:author => user, :video_url => "http://www.youtube.com/embed/xBtW61Vb6QI?rel=0", :title => "How does ambient temperature effect REM Sleep?", :description => "I'm curious abouth this specifically for patients who are doing C-PAP.")
+  idea.save
+  idea.tag_list.add(condition)
+  idea.save
+
+  #Liam
+  basics = {email: "seed.user.liam@gmail.com", password: "12345678"}
+  user = User.create(basics.merge({full_name:"Liam"}))
+  condition = "Crohn's"
+  user.tag_list.add(condition)
+  user.add_role :patient
+  user.save
+  idea = Idea.create(:author => user, :video_url => "http://www.youtube.com/embed/JeNvbceA3Pw?rel=0", :title => "How does a grain-free diet affect Crohn's Symptoms?", :description => "I've tried it myself and found it helpful, I've also read on forums about other patients with Crohn's and Colitis trying this to good effect, yet my doctor says there is no evidence.")
+  idea.save
+  idea.tag_list.add(condition)
+  idea.save
+
+  #Sean
+  basics = {email: "seanahrens@gmail.com", password: "12345678"}
+  user = User.create(basics.merge({full_name:"Sean"}))
+  condition = "Acne"
+  user.tag_list.add(condition, "Crohn's", "Migraine")
+  user.add_role :patient
+  user.save
+  idea = Idea.create(:author => user, :video_url => "http://www.youtube.com/embed/hv0-eeEAliQ?rel=0", :title => "Does Remicade (Infliximab) create chronic acne?", :description => "I've had chronic cystic acne ever since starting Remicade for Crohn's Disease. The hardest line acne drugs have not been able to keep it at bay for long.")
+  idea.save
+  idea.tag_list.add(condition, "Crohn's")
+  idea.save
+
+
+
+
+
+  # Create Ideas with Tags, Add Comments
+  Idea.first(4).each do |idea|
+    [8,10,15,12].sample.times do
+      idea.comments << Comment.create(:user => @users.sample, :comment => @comments.sample)
+      idea.save
+    end
+  end
+
+
 
   @users.each do |u|
     idea = Idea.create(:author => u, :title => idea_titles.sample, :description => idea_descriptions.sample)
     idea.save
-    1.times { idea.tag_list.add(@conditions_to_sample.sample) }
+    1.times { idea.tag_list.add([@conditions_to_sample,@conditions_to_sample,top_cond].sample.sample) }
 
-    [1,3,6,12].sample.times do
+    [4,8,10,15].sample.times do
       idea.comments << Comment.create(:user => @users.sample, :comment => @comments.sample)
     end
     idea.save
@@ -138,16 +206,31 @@ unless Rails.env == "test"
   end
 
 
+
+
+
+
+
+
+
+
+
   # Follow Ideas and give users Tags
   @ideas = Idea.all
 
   @users.each do |u|
-    10.times { u.follow(@ideas.sample) }
+    20.times { u.follow(@ideas.sample) }
     [1,2].sample.times { u.tag_list.add(@conditions_to_sample.sample) }
+    [0,0,1].sample.times { u.tag_list.add(top_cond.sample) }
     u.save
   end
 
 
 
 
+end
+
+
+def test
+  "adssda"
 end

@@ -1,6 +1,9 @@
 -# I could put role menu up here
+.text-center
+  %a{:href => "javascript:history.go(-1)"} Back
 
-%h2 People
+%h3.text-center Showing People
+%p.text-center Who Match
 
 %ul.list-group
   - @users.each do |user|

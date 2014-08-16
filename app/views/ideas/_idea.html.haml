@@ -13,4 +13,8 @@
         %p
           - @idea.tags.each do |tag|
             %a.label.label-success{:href=> tagged_url(:tag => tag.name)}= tag.name
+
+      - if !@idea.video_url.blank?
+        %iframe{allowfullscreen: "", height: "220px;", width: "100%", src: "#{@idea.video_url}&showinfo=0&autohide=1", :frameborder => 0}
+
       %small= "-#{@idea.author.name}"

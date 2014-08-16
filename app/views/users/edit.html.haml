@@ -1,6 +1,6 @@
-
-%h2 Welcome!
-%p Alright, so tell us a little about yourself!
+.text-center
+  %h2 Welcome!
+  %p Alright, so tell us a little about yourself!
 
 .row
   .col-md-6.col-md-offset-3
@@ -11,12 +11,12 @@
           .form-group
             = f.label :full_name, "Your Name", :class => "control-label col-sm-5"
             .col-sm-7
-              = f.text_field :full_name, autofocus: true, class: "form-control", placeholder: "As you want others to know you!"
-
+              = f.text_field :full_name, autofocus: true, class: "form-control", placeholder: "As you want others to see!"
+          %br/
           = f.label :tags, "Conditions You Care About"
           .small
-            This is very important! This personalizes your whole experience. Write a comma-separated list of the conditions you care about. Spelling is important. When in doubt, leave what you see here!
-            %span.text-gray Unfortunately no autocomplete is enabled at this time, so spelling must be an exact match.
+            This is very important! This personalizes your experience. Write a comma-separated list of the conditions you care about. Spelling is important.
+            %span.text-gray Unfortunately no autocomplete is enabled at this time, so spelling must be an exact match. When in doubt, leave what you see here!
 
           = f.text_area :tag_list, :class => "form-control"
 

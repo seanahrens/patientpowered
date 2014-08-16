@@ -25,13 +25,6 @@
     = render @idea
 
 
-.row
-  .col-md-12
-
-
-- if !@idea.video_url.blank?
-  %iframe{allowfullscreen: "", height: "220px;", width: "100%", src: "#{@idea.video_url}"}
-
 
 %hr/
 %a.no-link-styling{:href => following_idea_path, :idea => @idea}
@@ -57,17 +50,42 @@
         - if current_user && current_user.following?(@idea)
           .text-h5.text-center
             %i.fa.fa-thumbs-o-up
-            You're following this research. Help build momentum behind making it a reality.
+            You're following this research. Help build momentum on it to make it a reality.
+            %br/
             %br/
             .small
-              Use the comment stream below to build connections and work with researchers in collaborating over a study design. Share this page on Twitter and Facebook to get more momentum!
+              Interested researchers can now email you if they want to do a study.
+              Use the comment stream below to build connections and work with researchers, patients, and others to collaborate on a study design.
+              Share this page on Twitter and Facebook to get more momentum!
+              %br/
               %br/
               %a{:href => stop_following_idea_path(id: @idea.id)} I'm no longer interested.
 
+
+          - if current_user && current_user.has_role?(:researcher)
+            %hr/
+            .text-center.small
+              %em Researchers Only:
+              %br/
+              %a.btn.btn-danger.btn-block{:href => "mailto:supporters.of.idea.#{@idea.id}@patientpowered.us"}
+                %i.fa.fa-envelope
+                Email the Supporters
+              %br/
+              .small
+                Because you are a Researcher, you can email the supporters to share study design and longer-form information.
+
+
+
+        - elsif !current_user
+          %a.btn.btn-primary.btn-block{:href => follow_idea_path(id: @idea.id)}
+            %i.fa.fa-thumbs-o-up
+            Join to Support This Idea
         - else
           %a.btn.btn-primary.btn-block{:href => follow_idea_path(id: @idea.id)}
             %i.fa.fa-thumbs-o-up
             I Want to Know How to Help!
+          %br/
+          %small Click here to let other people know this idea interests you, and if a study develops, you'd want to know about it.
 
 
 %hr/

@@ -26,7 +26,15 @@
       .text-center.small interested researchers & stakeholders discovery your idea.
 
       .col-sm-6
-        =f.text_field(:tag_list, class: 'form-control')
+        =f.text_area(:tag_list, class: 'form-control')
+
+    .form-group
+      %label.col-sm-3.control-label.text-h5 (Optional Video)
+      .text-center.small Take a quick selfie video with your phone explaining your idea.
+      .text-center.small Upload it to youtube. Add the *Embed* URL here.
+
+      .col-sm-6
+        =f.text_field(:video_url, class: 'form-control')
 
     / .form-group
     /   %label.col-sm-3.control-label Video URL
@@ -34,3 +42,9 @@
     /     =f.text_field(:video_url, class: 'form-control')
 
     =f.submit("Post My Question", class: 'btn btn-primary btn-block')
+
+    .form-group
+      %label.col-sm-3.control-label.text-h6 Email me when people comment & upvote my idea
+
+      .col-sm-6
+        =check_box_tag(:full_name, class: 'form-control')

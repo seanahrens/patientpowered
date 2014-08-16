@@ -1,5 +1,8 @@
 
 
+.text-center
+  %a{:href => "javascript:history.go(-1)"} Back
+
 .row.text-center
   .col-xs-12
     %h3 Are you ready to join?
@@ -60,7 +63,7 @@
             .col-sm-offset-5.col-sm-7
               = f.submit "Sign up", :class => "btn btn-primary"
     %p.text-center
-      Already a Member
+      Already a Member?
       %a{:href => new_user_session_path} Sign in.
 
 

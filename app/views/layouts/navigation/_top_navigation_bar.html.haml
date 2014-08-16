@@ -9,28 +9,16 @@
     /   %i.fa.fa-arrow-left
 
 
-    %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
-      %span.sr-only Toggle navigation
-      %span.icon-bar
-      %span.icon-bar
-      %span.icon-bar
-
-  .collapse.navbar-collapse
-    %ul.nav.navbar-nav
-
-      %li
-        = link_to "Ideas", ideas_path
-
-
+    %ul.nav.navbar-nav.pull-right{:style=>"margin-right: 10px;"}
 
       - if current_user
         %li
           = link_to "<i class='fa fa-sign-out'></i> Sign out".html_safe, main_app.destroy_user_session_path, :method => :delete
       - else
         %li
-          %a{:href => new_user_session_path}
+          %a{:href => new_user_registration_path}
             %i.fa.fa-sign-in
-              Sign In
+              Join
 
 
 

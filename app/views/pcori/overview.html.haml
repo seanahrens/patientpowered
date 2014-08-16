@@ -50,6 +50,7 @@
   .text-center
     %p.small
       The above list is personalized to the conditions you set of interest.
+      %br/
       %a.btn.btn-sm{:href => edit_user_path(current_user)} Update My Interests
 
 
@@ -88,7 +89,8 @@
   Trending Ideas
 
 %ul.list-group
-  - Idea.all.sort_by(&:followers_count).last(4).reverse.each do |idea|
+  -# Idea.all.sort_by(&:followers_count).last(4).reverse.each do |idea|
+  - Idea.video.sort_by(&:followers_count).last(4).reverse.each do |idea|
     %li.list-group-item
       = render idea
   %li.list-group-item
