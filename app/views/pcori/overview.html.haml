@@ -24,6 +24,7 @@
 %p.text-center.small Through shared ideas, we create the potential for patient-centered research collaborations! Everyone (yes you) is welcome here.
 
 %h3.text-center Top Ideas by Condition
+
 .row
   .col-md-12
     .list-group
@@ -35,7 +36,7 @@
       - tags.each do |tag|
         %a.list-group-item.list-group-item-success{:href=> tagged_url(:tag => tag.name)}
           = tag.name
-          .badge= tag.count
+          -#.badge= tag.count
 
 
 
@@ -45,7 +46,11 @@
 - if !current_user
   %p.text-center
     %small If you join, the feeds above and below will be personalized with ideas about the conditions that you care about.
-
+- else
+  .text-center
+    %p.small
+      The above list is personalized to the conditions you set of interest.
+      %a.btn.btn-sm{:href => edit_user_path(current_user)} Update My Interests
 
 
 
