@@ -25,6 +25,10 @@
   %p.text-center.small Through shared ideas, we create the potential for patient-centered research collaborations! Everyone (yes you) is welcome here.
 
 %h3.text-center Top Ideas by Condition
+.text-center
+  %p
+    Total Ideas
+    %span.badge= Idea.count
 
 .row
   .col-md-12
@@ -102,14 +106,19 @@
 
 
 - if !current_user
-  %p.text-center You might be a patient (caring for a patient), a researcher, a healthcare industry professional (we call you stakeholders). In any case, there are probably medical conditions that you care become solved in more patient-centric ways. Join this global collaboration! You're needed here.
+  %p.text-center
+    %small You might be a patient (caring for a patient), a researcher, a healthcare industry professional (we call you stakeholders). In any case, there are probably medical conditions that you care become solved in more patient-centric ways. Join this global collaboration! You're needed here.
 
   %br/
 
   %a.btn.btn-primary.btn-block{:href => new_idea_path}
     Join Us!
+%br/
+%br/
 
-
+%p.text-center
+  %small
+    %a{:href => stats_path} See Network Stats
 / %br/
 / .well.well-sm
 /   .text-center

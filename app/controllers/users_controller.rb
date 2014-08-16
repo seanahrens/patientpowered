@@ -66,6 +66,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:tag_list, :full_name, :role)
+    params.require(:user).permit(:tag_list, :full_name, :role, :location, :affiliation)
   end
 end

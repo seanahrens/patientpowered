@@ -104,6 +104,8 @@ unless Rails.env == "test"
     "Hi, I represent Aetna Consumer Research and we're quite interested in a partnership here as well.", "I'm so in", "How do you think you would deal with complications of placebo here?", "We could probably team up with some patients from some other communities I'm connected with on this one.",
     "Super like!", "So I've done this myself and it absolutely worked, willing to help by trying again.", "I read this too.", "I'm definitely curious about this one.", "Hey guys, I'm working with my university to see if they could support us with some grant funds."]
 
+  @organizations = ["University of North Carolina", "Harvard Hospital", "Aetna", "Mercer", "GlaxoSmithKline", "Quintiles", "Private Practice", "Mt. Sinai", "UCSF", "RockHealth", "PCORI"]
+  @locations = ["Raleigh, NC", "San Francisco, CA", "New York City, NY", "Philadelphia, PA", "Washington, D.C."]
 
   top_cond = ["Fibromyalgia", "Parkison's Disease", "Diabetes", "Obesity"]
 
@@ -117,8 +119,13 @@ unless Rails.env == "test"
 
   i = 0
   num_users.times do
-    user = User.create(email: "seed.user.#{i+=1}@gmail.com", password: "12345678", full_name: @names.sample)
     random_role = [:patient,:patient,:patient,:patient,:patient,:researcher, :researcher, :stakeholder, :stakeholder, :stakeholder].sample
+    if (random_role == :patient)
+      organization = nil
+    else
+      organization = @organizations.sample
+    end
+    user = User.create(email: "seed.user.#{i+=1}@gmail.com", password: "12345678", full_name: @names.sample, location: @locations.sample, affiliation: organization)
     user.add_role random_role
     user.save
   end
@@ -158,7 +165,7 @@ unless Rails.env == "test"
   #Liam
   basics = {email: "seed.user.liam@gmail.com", password: "12345678"}
   user = User.create(basics.merge({full_name:"Liam"}))
-  condition = "Crohn's"
+  condition = "Crohn's Disease"
   user.tag_list.add(condition)
   user.add_role :patient
   user.save
@@ -171,12 +178,12 @@ unless Rails.env == "test"
   basics = {email: "seanahrens@gmail.com", password: "12345678"}
   user = User.create(basics.merge({full_name:"Sean"}))
   condition = "Acne"
-  user.tag_list.add(condition, "Crohn's", "Migraine")
+  user.tag_list.add(condition, "Crohn's Disease", "Migraine")
   user.add_role :patient
   user.save
   idea = Idea.create(:author => user, :video_url => "http://www.youtube.com/embed/hv0-eeEAliQ?rel=0", :title => "Does Remicade (Infliximab) create chronic acne?", :description => "I've had chronic cystic acne ever since starting Remicade for Crohn's Disease. The hardest line acne drugs have not been able to keep it at bay for long.")
   idea.save
-  idea.tag_list.add(condition, "Crohn's")
+  idea.tag_list.add(condition, "Crohn's Disease")
   idea.save
 
 

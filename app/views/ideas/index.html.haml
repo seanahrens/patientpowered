@@ -47,3 +47,19 @@
     .text-center
       %small Patients, Researchers, and Stakeholders can all submit ideas. The fun isn't just for patients!
 %br/
+
+
+
+
+- if @condition == "Sleep Apnea"
+  .alert.alert-info
+    .text-center
+      %small Whoa! There's an existing Patient Network for You!
+      %br/
+      %a{:href => "http://myapnea.org"} The MyApnea Patient Network
+- if @condition == "Crohn's Disease"
+  .alert.alert-info
+    .text-center
+      %small Whoa! There's an existing Patient Network for You!
+      %br/
+      %a{:href => "http://ccfa.openpprn.org"} The Crohn's Patient Network

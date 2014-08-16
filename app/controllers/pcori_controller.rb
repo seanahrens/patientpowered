@@ -26,6 +26,10 @@ class PcoriController < ApplicationController
 
   end
 
+  def stats
+
+  end
+
 
   def slides
     # if !upload_complete

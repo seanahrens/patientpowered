@@ -34,6 +34,16 @@
           %br/
 
           .form-group
+            = f.label :affiliation, "Organization", :class => "control-label col-sm-5"
+            .col-sm-7
+              = f.text_field :affiliation, class: "form-control", placeholder: "(Optional)"
+
+          .form-group
+            = f.label :location, "Location", :class => "control-label col-sm-5"
+            .col-sm-7
+              = f.text_field :location, class: "form-control", placeholder: "City, State, Country"
+
+          .form-group
             .col-sm-offset-5.col-sm-7
               = f.submit "Save", :class => "btn btn-primary btn-block"
 
