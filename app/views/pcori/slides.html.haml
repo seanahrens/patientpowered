@@ -1,58 +1,137 @@
 
-.text-center
-  %h3 A Demo of the Software
-  %p
-    %a{:href=>root_path} Click here to use the software itself
-  %iframe{allowfullscreen: "", height: "420", src: "http://www.youtube.com/embed/CV74UqCkLBY?rel=0&showinfo=0", :frameborder => 0}
-  %h4 A Walkthrough of PatientPowered
-  %small
-    an open source, free-to-use, modify, deploy,
-    and redistribute, creative commons licensed technology for pcori
-  %p
-    %a{:href => "patientpowered.us"} patientpowered.us
-  %small a place for patients, researchers, and stakeholders to connect
+
+.row
+  .col-md-12
+    %h2 My Slides
+    %p
+      There are two videos that should give you a good narration of the app and the process of building it. The "app" is available for you to use immediately at
+      %a{:href => root_path} patientpowered.us.
+      Open it up on your mobile phone for the optimized experience! Or on your desktop browser, you can size down your browser to the smallest size possible to simulate a mobile phone size, like I'm doing in the video below:
+
+.row
+  .col-md-4
+    %h3 A Video Tour
+    %p This is a narrated video tour of the app so you can see how it works!
+    .text-center
+      %iframe{allowfullscreen: "", height: "420", src: "http://www.youtube.com/embed/CV74UqCkLBY?rel=0&showinfo=0", :frameborder => 0}
+
+  .col-md-8
+    %h3 My Slides
+    %p My slides are in video format, below. Please watch the video to see:
+
+    %iframe{allowfullscreen: "", width: "600", height: "400", src: "http://www.youtube.com/embed/Bykr8Sc5MoQ?rel=0&showinfo=0", :frameborder => 0}
+    %p.small Make sure to increase the quality of the video with the gear icon.
 
 
+%br/
+%br/
 
-%h3 My Slides
-%p My slides are in video format, below. Please watch the video to see:
-.alert.alert-info.alert-sm
-  Click the gear icon on the bottom of the video to increase it's quality to HD! Full size the video. Enjoy
-%iframe{allowfullscreen: "", width: "100%", height: "400", src: "http://www.youtube.com/embed/Bykr8Sc5MoQ?rel=0&showinfo=0", :frameborder => 0}
+.row
+  .col-md-12
+
+    %h3 Team
+    %h4 &nbsp;&nbsp;&nbsp;&nbsp; Sean Ahrens
+    %ul
+
+      %li Patient with Crohn's Disease for 15 years
+      %li
+        Founder of
+        %a{:href => "crohology.com"} Crohnology.com
+        a patient-to-patient information sharing network of >6,000 patients with Crohn's Disease and Ulcerative Colitis
+      %li
+        Co-PI on the CCFA (Crohn's & Colitis Foundation of America) Patient-Powered Research Network
+
+      %li
+        Founder of
+        %a{:href => "https://github.com/openpprn/opn"} OpenPPRN
+        an open-source solution for PCORI-funded (or anyone!) to build web-based PPRNs.
+      %li Software Engineer, UI/UX Designer, and Patient Advocate
+      %li
+        Personal website:
+        %a{:href => "seanahrens.org"} seanahrens.org
+    %h4 &nbsp;&nbsp;&nbsp;&nbsp; Co-Designed / Consulted with...
+    %ul
+      %li The Sleep Apnea PPRN
+      %li The Crohn's & Colitis PPRN
+      %li Adam Admur, Patient with Sleep Apnea (SAPCON)
+      %li Justine Admur, Patient with Sleep Apnea
+      %li Will Headaphol, Patient with Sleep Apnea (MyApnea.org)
+      %li Liam, Patient with Crohn's
+      %li Ben, Patient with ADHD
+      %li Piotr Mankowski, Health IT Developer
+      %li Mike Kappelman, MD Physician & Researcher
 
 
+    %hr/
 
-%h3 Summary of Slides (In Text)
-%h4 Team
-%h4 &nbsp;&nbsp;&nbsp;&nbsp; Sean Ahrens
-%ul
+    %h3 Marketing
+    %ul
+      %li
+        Because it links to participating PPRNs for deeper condition-specific features (see bottom of
+        %a{:href => tagged_path(:tag => "Sleep Apnea")} Sleep Apnea Page
+        ), there is an incentive for all PPRNs to jump on board and help promote.
+      %li CCFA PPRN Patients can be marketed to.
+      %li Sleep Apnea PPRN Patients can be marketed to.
+      %li My website, Crohnology.com, has 6,000 patients who would love this.
+      %li Because it's mobile-responsive web-based, rather than a native app, it is discoverable and linkable by Twitter, Facebook, and other websites more easily. Has a great potential to be spread patient-to-patient.
 
-  %li Patient with Crohn's Disease for 15 years
-  %li
-    Founder of
-    %a{:href => "crohology.com"} Crohnology.com
-    a patient-to-patient information sharing network of >6,000 patients with Crohn's Disease and Ulcerative Colitis
-  %li
-    Co-PI on the CCFA (Crohn's & Colitis Foundation of America) Patient-Powered Research Network
+    %hr/
 
-  %li
-    Founder of
-    %a{:href => "https://github.com/openpprn/opn"} OpenPPRN
-    an open-source solution for PCORI-funded (or anyone!) to build web-based PPRNs.
-  %li Software Engineer, UI/UX Designer, and Patient Advocate
-  %li
-    Personal website:
-    %a{:href => "seanahrens.org"} seanahrens.org
-%h4 Co-Designed / Consulted with...
-%ul
-  %li The Sleep Apnea PPRN
-  %li The Crohn's & Colitis PPRN
-  %li Adam Admur, Patient with Sleep Apnea (SAPCON)
-  %li Justine Admur, Patient with Sleep Apnea
-  %li Will Headaphol, Patient with Sleep Apnea (MyApnea.org)
-  %li Liam, Patient with Crohn's
-  %li Ben, Patient with ADHD
-  %li Piotr Mankowski, Health IT Developer
-  %li Mike Kappelman, MD Physician & Researcher
+    %h3 Accessibility
+    %ul
+      %li Since most in the world do not have smartphones capable of downloading apps, this mobile-first web solution is more accessible to anyone who can get in front of a mobile-browser phone or computer.
+      %li The website is 508 compliant with web accessible techniques fit for screen readers (blind) and with high contrast colors for people with limited vision. Images and links are tagged appropriately for these audiences as well.
 
-%hr/
+    %hr/
+
+    %h3 Meets & Exceeds All Requirement Criteria
+    %ul
+      %li
+        Facilitates creation of partnerships among all user types: Researchers, Stakeholder, Patient.
+        .text-darkgray Yes, it match-makes around ideas/conditions for all user types, as well as enables grouping of all types by condition for more precise match making.
+      %li
+        Users must be able to self-select the user type(s) with which they primarily identify
+        .text-darkgray Moreover, users can be a member of two or more groups at once.
+
+      %li
+        Internal (user-only) communication platform
+        .text-darkgray Communication area for commenting and collaborating on research ideas that only users can use.
+      %li
+        Ability to translate from English, and/or a plan for translating the app
+        .text-darkgray Language translation is supported, each language other than English just needs to be added. This is actually another benefit of a web-based solution (Google Chrome or other browsers can perform on-the-fly-translation where languages haven't yet been translated to)
+      %li
+        Section 508 compliance
+        .text-darkgray The website is 508 compliant with web accessible techniques fit for screen readers (blind) and with high contrast colors for people with limited vision. Images and links are tagged appropriately for these audiences as well.
+
+      %li
+        Interoperability/ ability to integrate with pre-existing research networks
+        .text-darkgray Because it is built with the foundation of the OpenPPRN (Open Patient Powered Research Network), it can be immediately compatible to pull in data from any PPRN using that software to pull-in, in real-time, data from those networks. Patients could generate ideas on those networks, for example, and they could prepopulate into here for Researchers and Stakeholders (and patients) across conditions to collaborate on.
+
+      %li
+        A clear designation that participation in the application is voluntary.
+        .text-darkgray Yes, specifically noted in the sign up flow to all users.
+
+      %li
+        An open-access analytics dashboard/feature.
+        .text-darkgray
+          Yes, a
+          %a{:href=> stats_path} dashboard
+          showing total users (broken down by type), number of ideas/partnerships collaborated on (broken down by condition), location distribution, and organizational affiliations.
+
+
+    %hr/
+
+    %h3 Extra Features
+    %ul
+      %li Social Media Integration: Facebook, Twitter, and the original social media (Email) are all ways to share ideas within the app.
+      %li User Profiles: with conditions they care about.
+      %li Condition-based Data Browsing: view patients, researchers, and stakeholders by the conditions they care about.
+      %li Ideas: any user can propose an idea and it becomes an open collaboration between anyone interested.
+      %li Personalized Dashboard: user's main navigation changes based on the conditions they care about, giving them quick accessibility to the ideas that are relevant to them.
+      %li Idea Voting (Supporting): users of all types can specify that they want to see an idea come to fruition.
+      %li Idea Commenting: users interested in an idea can offer perspectives and resources, and collaborate around study design in a discussion thread on the idea.
+      %li Researcher Contacting: researchers can contact the supporters of an idea in mass to discuss things like patient recruiting, etc.
+      %li Refreshingly Smooth UI/UX
+      %li Many More...
+
+

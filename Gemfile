@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
 
-
-
+gem 'pry'
 gem "acts_as_follower"
 gem 'acts_as_commentable'
 gem 'acts_as_taggable_on'
