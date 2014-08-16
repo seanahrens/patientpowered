@@ -3,6 +3,7 @@ class PcoriController < ApplicationController
   before_action :catch_flash_message
   before_action :set_body_class_to_idea, :only => [:idea_index,:idea_show,:idea_new]
   before_action :set_body_class_to_study, :only => [:study_index,:study_show,:study_new]
+  before_action :set_tour_url, :only => [:overview,:tour,:slides]
 
   def set_body_class_to_idea
     @body_class = "idea"
@@ -39,4 +40,7 @@ class PcoriController < ApplicationController
     # end
   end
 
+  def set_tour_url
+    @tour_url = "http://www.youtube.com/embed/frfskWA6XCE?rel=0&showinfo=0"
+  end
 end

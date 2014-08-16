@@ -13,13 +13,13 @@
     %h3 A Video Tour
     %p This is a narrated video tour of the app so you can see how it works!
     .text-center
-      %iframe{allowfullscreen: "", height: "420", src: "http://www.youtube.com/embed/CV74UqCkLBY?rel=0&showinfo=0", :frameborder => 0}
+      %iframe{allowfullscreen: "", height: "420", src: @tour_url, :frameborder => 0}
 
   .col-md-8
     %h3 My Slides
     %p My slides are in video format, below. Please watch the video to see:
 
-    %iframe{allowfullscreen: "", width: "600", height: "400", src: "http://www.youtube.com/embed/Bykr8Sc5MoQ?rel=0&showinfo=0", :frameborder => 0}
+    %iframe{allowfullscreen: "", width: "600", height: "450", src: "http://www.youtube.com/embed/Bykr8Sc5MoQ?rel=0&showinfo=0", :frameborder => 0}
     %p.small Make sure to increase the quality of the video with the gear icon.
 
 
@@ -88,6 +88,19 @@
       %li
         All content on the site is licensed under the creative commons license. Anyone is free to do anything created here. Hopefully to help advance research.
     %hr/
+
+
+    %h3 Intentionally a Mobile-First Responsive Website
+    %ul
+      %li Since most in the world do not have smartphones capable of downloading apps, this mobile-first web solution is more accessible to anyone who can get in front of a mobile-browser phone or computer.
+      %li Also from a technological point of view, it's my opinion that a responsive website is a better solution for the goals. It is faster to built, iterate on, and there are more software developers with whom it would be much easier to continue to build on this open source codebase. Any native app would have to be built two times (for iOS and Android) before even a fraction of the number of people who could load the website would be able to use it.
+      %li Websites are also better for sharing, and so links to research ideas can be posted to Twitter and Facebook from a website, helping grow the network.
+
+
+
+
+    %br/
+    %br/
 
     %h2 Features
 
