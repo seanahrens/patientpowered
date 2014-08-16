@@ -2,8 +2,12 @@
 .text-center
   %a{:href => "javascript:history.go(-1)"} Back
 
-%h3.text-center Showing People
-%p.text-center Who Match
+/ %h3.text-center Showing People
+/ %p.text-center Who Match
+
+%h3.text-center
+  - if params[:role]
+    = params[:role].capitalize + "s"
 
 %ul.list-group
   - @users.each do |user|

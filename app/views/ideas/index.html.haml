@@ -31,7 +31,7 @@
     %p Do you have a good idea? You should post the first. The people above will see it in the feeds.
   %hr/
 - else
-  - @ideas.first(20).each do |idea|
+  - @ideas.each do |idea|
     = render idea
     %hr/
 
