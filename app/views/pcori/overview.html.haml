@@ -15,13 +15,14 @@
 
   %br/
 
-%a.btn.btn-primary.btn-block{:href => new_idea_path}
-  I Want to Participate in This!
-  %i.fa.fa-chevron-right
+- if !current_user
+  %a.btn.btn-primary.btn-block{:href => new_idea_path}
+    I Want to Participate in This!
+    %i.fa.fa-chevron-right
 
-%br/
+  %br/
 
-%p.text-center.small Through shared ideas, we create the potential for patient-centered research collaborations! Everyone (yes you) is welcome here.
+  %p.text-center.small Through shared ideas, we create the potential for patient-centered research collaborations! Everyone (yes you) is welcome here.
 
 %h3.text-center Top Ideas by Condition
 
@@ -103,10 +104,10 @@
 - if !current_user
   %p.text-center You might be a patient (caring for a patient), a researcher, a healthcare industry professional (we call you stakeholders). In any case, there are probably medical conditions that you care become solved in more patient-centric ways. Join this global collaboration! You're needed here.
 
-%br/
+  %br/
 
-%a.btn.btn-primary.btn-block{:href => new_idea_path}
-  Join Us!
+  %a.btn.btn-primary.btn-block{:href => new_idea_path}
+    Join Us!
 
 
 / %br/

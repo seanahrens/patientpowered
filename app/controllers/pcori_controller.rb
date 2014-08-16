@@ -28,11 +28,11 @@ class PcoriController < ApplicationController
 
 
   def slides
-    if !upload_complete
-      render :text => "Slides are currently uploading... Refresh in a few minutes"
-    else
-      render :upload
-    end
+    # if !upload_complete
+    #   render :text => "Slides are currently uploading... Refresh in a few minutes"
+    # else
+    #   render :upload
+    # end
   end
 
 end
