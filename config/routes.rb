@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get 'by_condition' => 'users#by_condition'
   get 'following_idea' => 'users#following_idea', :as => 'following_idea'
-
+  get 'slides' => 'pcori#slides'
 
   # This line mounts Forem's routes at /forums by default.
   # This means, any requests to the /forums URL of your application will go to Forem::ForumsController#index.

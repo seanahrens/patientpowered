@@ -26,4 +26,9 @@ class PcoriController < ApplicationController
 
   end
 
+
+  def slides
+    render :text => "Slides are currently uploading... Refresh in a few minutes"
+  end
+
 end
