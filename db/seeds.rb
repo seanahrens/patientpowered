@@ -106,6 +106,10 @@ unless Rails.env == "test"
 
   @names = ["Pat", "JB", "Milan", "Charlie", "Dakota", "Casey", "Jessie", "Riley", "Jamie", "Sage", "Harley", "Quinn", "Alexis", "Jordan", "Marley", "Sawyer", "Ariel"]
 
+  @comments = ["I'm so ready to join a study on this", "Such a great study idea", "Hi, I'm a research from University North Carolina, and I'm very interested in collaborating on a study on this.",
+    "Hi, I represent Aetna Consumer Research and we're quite interested in a partnership here as well.", "I'm so in", "How do you think you would deal with complications of placebo here?", "We could probably team up with some patients from some other communities I'm connected with on this one.",
+    "Super like!", "So I've done this myself and it absolutely worked, willing to help by trying again.", "I read this too.", "I'm definitely curious about this one.", "Hey guys, I'm working with my university to see if they could support us with some grant funds."]
+
   num_users = 100
 
   i = 0
@@ -124,8 +128,13 @@ unless Rails.env == "test"
   @users.each do |u|
     idea = Idea.create(:author => u, :title => idea_titles.sample, :description => idea_descriptions.sample)
     idea.save
-    [1,2,3].sample.times { idea.tag_list.add(@conditions_to_sample.sample) }
+    1.times { idea.tag_list.add(@conditions_to_sample.sample) }
+
+    [1,3,6,12].sample.times do
+      idea.comments << Comment.create(:user => @users.sample, :comment => @comments.sample)
+    end
     idea.save
+
   end
 
 
@@ -134,7 +143,7 @@ unless Rails.env == "test"
 
   @users.each do |u|
     10.times { u.follow(@ideas.sample) }
-    [1,2,3].sample.times { u.tag_list.add(@conditions_to_sample.sample) }
+    [1,2].sample.times { u.tag_list.add(@conditions_to_sample.sample) }
     u.save
   end
 

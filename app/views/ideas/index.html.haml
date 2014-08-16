@@ -12,20 +12,38 @@
     %li.active
       %a{:href=>by_condition_path} Choose a Condition...
 
-= render "/users/role_nav"
+.well.well-sm
+  .text-center
+    .text-h4 People who Care about
+    = @condition if @condition
+    = "All Conditions" if !@condition
+  = render "/users/role_nav"
 
 %br/
 
-- @ideas.first(10).each do |idea|
-  = render idea
+- if !@ideas.any?
   %hr/
+  .text-center
+    %h3
+      There are no research ideas posted about
+      %strong= @condition
+      %u yet.
+    %p Do you have a good idea? You should post the first. The people above will see it in the feeds.
+  %hr/
+- else
+  - @ideas.first(20).each do |idea|
+    = render idea
+    %hr/
 
 
 
 
-%br/
 %br/
 
 .row
   .col-md-12
-    %a.btn.btn-primary.btn-block{:href => new_idea_path} I want to Submit an Idea
+    %a.btn.btn-primary.btn-block{:href => new_idea_path} I Want to Submit My Idea!
+    %br/
+    .text-center
+      %small Patients, Researchers, and Stakeholders can all submit ideas. The fun isn't just for patients!
+%br/

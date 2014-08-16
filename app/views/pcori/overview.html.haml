@@ -2,21 +2,28 @@
   = image_tag "globe.png", :class => "col-xs-12"
 
 
+.text-center
 
+  %h3 Patient-Powered Research
 
-%h3 Patient Powered Research
+  %p This is a network that connects patients with the people that care about solving their condition!
+  %p.small The idea is refreshingly obvious. Patients propose research questions. Researchers and Healthcare Professionals (Stakeholders) riff and collaborate on these ideas. Other patients chime in with their perspectives and insight. When research ideas have enough buy-in, they bubble up, and create amazing opportunities for global collaboration between Patients, Researchers, and Healthcare Professionals.
 
-%p
-  Patients are experts in the experience of their own condition. These experts should drive the research. This website is a non-profit, crowd-sourced collaboration that enables patients to work directly with patient-centered researchers in the field to craft new studies involving direct patient participation.
+  %h4 We are People That Care
 
+  = render "/users/role_nav"
 
+  %br/
 
-= render "/users/role_nav"
+%a.btn.btn-primary.btn-block{:href => new_idea_path}
+  I Want to Participate in This!
+  %i.fa.fa-chevron-right
 
+%br/
 
+%p.text-center.small Through shared ideas, we create the potential for patient-centered research collaborations! Everyone (yes you) is welcome here.
 
-
-%h3 Research Ideas
+%h3.text-center Top Ideas by Condition
 .row
   .col-md-12
     .list-group
@@ -34,8 +41,11 @@
 
       %a.list-group-item.list-group-item-info{:href=> by_condition_path}
         Browse Ideas in all Conditions...
-      - if !current_user
-        Sign in to see your tag list
+
+- if !current_user
+  %p.text-center
+    %small If you join, the feeds above and below will be personalized with ideas about the conditions that you care about.
+
 
 
 
@@ -70,19 +80,26 @@
 
 %h3.text-center
   %i.fa.fa-lightbulb-o.text-h2
-  Popular Ideas
+  Trending Ideas
 
 %ul.list-group
   - Idea.all.sort_by(&:followers_count).last(4).reverse.each do |idea|
     %li.list-group-item
       = render idea
+  %li.list-group-item
+    %a.btn.btn-success.btn-md.btn-block{:href => ideas_path}
+      See All Ideas...
+      %i.fa.fa-chevron-right
+
+
+
+- if !current_user
+  %p.text-center You might be a patient (caring for a patient), a researcher, a healthcare industry professional (we call you stakeholders). In any case, there are probably medical conditions that you care become solved in more patient-centric ways. Join this global collaboration! You're needed here.
 
 %br/
 
-%a.btn.btn-primary.btn-block{:href => ideas_path}
-  See All Ideas...
-  %i.fa.fa-chevron-right
-
+%a.btn.btn-primary.btn-block{:href => new_idea_path}
+  Join Us!
 
 
 / %br/

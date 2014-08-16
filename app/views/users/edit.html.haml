@@ -1,31 +1,40 @@
 
-%h2 Interests!
+%h2 Welcome!
+%p Alright, so tell us a little about yourself!
 
 .row
   .col-md-6.col-md-offset-3
     .panel.panel-default
-      .panel-heading
-        .panel-title Interests
+
       .panel-body
         = form_for current_user, html: {role: "form", class: 'form-horizontal'} do |f|
           .form-group
-            = f.label :full_name, :class => "control-label col-sm-5"
+            = f.label :full_name, "Your Name", :class => "control-label col-sm-5"
             .col-sm-7
-              = f.text_field :full_name, autofocus: true, class: "form-control", placeholder: "Your Name (As you want others to see it)"
+              = f.text_field :full_name, autofocus: true, class: "form-control", placeholder: "As you want others to know you!"
 
-          = f.label :tags
-          = f.text_field :tag_list
+          = f.label :tags, "Conditions You Care About"
+          .small
+            This is very important! This personalizes your whole experience. Write a comma-separated list of the conditions you care about. Spelling is important. When in doubt, leave what you see here!
+            %span.text-gray Unfortunately no autocomplete is enabled at this time, so spelling must be an exact match.
 
-          %fieldset
-            %legend User Roles
+          = f.text_area :tag_list, :class => "form-control"
+
+          %br/
+          .text-center
+            %h4 What Role(s) Are You?
+            %small You can be more than one!
+          %fieldset.text-center
+
             - [:patient,:researcher,:stakeholder].each do |role|
               = f.label(role) do
                 = role.capitalize
                 = hidden_field_tag(role, 0)
                 = check_box_tag(role, 1, @user.has_role?(role))
+          %br/
 
           .form-group
             .col-sm-offset-5.col-sm-7
-              = f.submit "Update", :class => "btn btn-primary"
+              = f.submit "Save", :class => "btn btn-primary btn-block"
 
 

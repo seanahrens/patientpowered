@@ -52,7 +52,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Your Interests Have Been Set!"
     end
 
-    render "edit"
+    redirect_to overview_path
   end
 
   private

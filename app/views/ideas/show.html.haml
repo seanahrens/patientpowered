@@ -4,7 +4,7 @@
   %li
     %a{:href=>overview_path} All Ideas
   %li
-    %a{:href=>tagged_path,:tag=>@condition}= @condition
+    %a{:href=>tagged_path(tag: @condition)}= @condition
   %li.active
     Idea
 
@@ -57,8 +57,12 @@
         - if current_user && current_user.following?(@idea)
           .text-h5.text-center
             %i.fa.fa-thumbs-o-up
-            You've committed to this research.
-            %a{:href => stop_following_idea_path(id: @idea.id)} Redact.
+            You're following this research. Help build momentum behind making it a reality.
+            %br/
+            .small
+              Use the comment stream below to build connections and work with researchers in collaborating over a study design. Share this page on Twitter and Facebook to get more momentum!
+              %br/
+              %a{:href => stop_following_idea_path(id: @idea.id)} I'm no longer interested.
 
         - else
           %a.btn.btn-primary.btn-block{:href => follow_idea_path(id: @idea.id)}
