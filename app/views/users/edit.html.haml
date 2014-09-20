@@ -13,10 +13,10 @@
             .col-sm-7
               = f.text_field :full_name, autofocus: true, class: "form-control", placeholder: "As you want others to see!"
           %br/
-          = f.label :tags, "Conditions You Care About"
-          .small
+          = f.label :tags, "List the Conditions You Care About"
+          .small.hidden
             This is very important! This personalizes your experience. Write a comma-separated list of the conditions you care about. Spelling is important.
-            %span.text-gray Unfortunately no autocomplete is enabled at this time, so spelling must be an exact match. When in doubt, leave what you see here!
+            %span.text-gray.hidden Unfortunately no autocomplete is enabled at this time, so spelling must be an exact match. When in doubt, leave what you see here!
 
           = f.text_area :tag_list, :class => "form-control"
 

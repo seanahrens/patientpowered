@@ -48,7 +48,7 @@
           .form-group
             = f.label :email, :class => "control-label col-sm-5"
             .col-sm-7
-              = f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email"
+              = f.email_field :email, autofocus: false, autocomplete: "off", class: "form-control", placeholder: "Email"
           .form-group
             = f.label :password, :class => "control-label col-sm-5"
             .col-sm-7

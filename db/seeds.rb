@@ -134,8 +134,31 @@ unless Rails.env == "test"
 
 
 
-  # Create the Video Patients
+  # Give Users Conditions, Create Idea, and Comments on that Idea
   @users= User.all
+
+  @users.each do |u|
+    #Give User Condition
+    u_conditions = @conditions_to_sample.sample([1,2,3].sample)+top_cond.sample([0,0,1].sample)
+    u.tag_list.add(u_conditions)
+    u.save
+
+    #Create Idea
+    idea = Idea.create(:author => u, :title => idea_titles.sample, :description => idea_descriptions.sample)
+    idea.save
+    idea.tag_list.add(u_conditions.sample)
+
+    #Comments
+    [4,8,10,15].sample.times do
+      idea.comments << Comment.create(:user => @users.sample, :comment => @comments.sample)
+    end
+    idea.save
+  end
+
+
+
+
+  # Create the Video Patients
 
   #Ben
   basics = {email: "seed.user.ben@gmail.com", password: "12345678"}
@@ -148,7 +171,6 @@ unless Rails.env == "test"
   idea.save
   idea.tag_list.add(condition)
   idea.save
-
 
   #Will
   basics = {email: "seed.user.will@gmail.com", password: "12345678"}
@@ -186,8 +208,10 @@ unless Rails.env == "test"
   idea.tag_list.add(condition, "Crohn's Disease")
   idea.save
 
+
+
   # Add Comments to these Video Ideas
-  Idea.first(4).each do |idea|
+  Idea.last(4).each do |idea|
     [8,10,15,12].sample.times do
       idea.comments << Comment.create(:user => @users.sample, :comment => @comments.sample)
       idea.save
@@ -198,25 +222,6 @@ unless Rails.env == "test"
 
 
 
-
-  # Give Users Conditions, Create Idea, and Comments on that Idea
-  @users.each do |u|
-    #Give User Condition
-    u_conditions = @conditions_to_sample.sample([1,2,3].sample)+top_cond.sample([0,0,1].sample)
-    u.tag_list.add(u_conditions)
-    u.save
-
-    #Create Idea
-    idea = Idea.create(:author => u, :title => idea_titles.sample, :description => idea_descriptions.sample)
-    idea.save
-    idea.tag_list.add(u_conditions.sample)
-
-    #Comments
-    [4,8,10,15].sample.times do
-      idea.comments << Comment.create(:user => @users.sample, :comment => @comments.sample)
-    end
-    idea.save
-  end
 
 
   # Follow The Ideas
