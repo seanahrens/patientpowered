@@ -5,7 +5,7 @@ gem 'pry'
 gem "acts_as_follower"
 gem 'acts_as_commentable'
 gem 'acts_as_taggable_on'
-
+gem 'tagmanager-rails'
 
 gem 'thin'
 

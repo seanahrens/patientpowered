@@ -13,10 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require chosen.jquery
+
 //= require forem
 //= require main
 //= require pages
 //= require admin
+//= require tagmanager
 
 
