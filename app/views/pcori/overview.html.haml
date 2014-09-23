@@ -81,16 +81,12 @@
 
     %hr/
 
+- if !current_user
+  .row
+    .col-md-12
 
-.row
-  .col-md-12
-
-    %a.btn.btn-default.btn-md.btn-block{:href => new_idea_path}
-      Submit Your Idea!
-      %i.fa.fa-chevron-right
-
-    %a.btn.btn-primary.btn-md.btn-block{:href => new_idea_path}
-      Join the Community!
-      %i.fa.fa-chevron-right
+      %a.btn.btn-primary.btn-md.btn-block{:href => new_idea_path}
+        Join the Community!
+        %i.fa.fa-chevron-right
 
 
