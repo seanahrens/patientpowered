@@ -168,7 +168,7 @@ unless Rails.env == "test"
 
   # Add Comments to these Video Ideas
   Idea.last(4).each do |idea|
-    [8,10,15,12].sample.times do
+    [2,4,6].sample.times do
       idea.comments << Comment.create(:user => @users.sample, :comment => @comments.sample)
       idea.save
     end
