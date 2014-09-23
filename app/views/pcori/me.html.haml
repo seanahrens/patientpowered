@@ -17,10 +17,15 @@
         %a.list-group-item.list-group-item-info{:href=> tagged_path(tag: tag.name)}
           = tag.name
           -#.badge= tag.count
+
+
+    %h4 Ideas
     %a.btn.btn-primary.btn-block{:href => new_idea_path} I Want to Submit an Idea!
-    %a.btn.btn-block.btn-warning{:href => edit_user_path(current_user)} Edit Conditions
+    / %a.btn.btn-block.btn-warning{:href => edit_user_path(current_user)} Edit Conditions
 
 
+%br/
+%br/
 %br/
 .row
   .col-md-12
