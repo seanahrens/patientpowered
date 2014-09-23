@@ -13,7 +13,7 @@
       %a.btn.btn-default.navbar-btn{:href => ideas_path, :type => "button", :class => "#{"active" if controller_name == "ideas" && action_name == "index"}"} Top Ideas
       %a.btn.btn-default.navbar-btn{:href => by_condition_path, :type => "button", :class => "#{"active" if action_name == "by_condition"}"} Conditions
       - if current_user
-        %a.btn.btn-default.navbar-btn{:href => me_path, :type => "button", :class => "#{"active" if action_name == "me"}"} My Conditions
+        %a.btn.btn-default.navbar-btn{:href => me_path, :type => "button", :class => "#{"active" if action_name == "me"}"} My Profile
       - else
         %a.btn.btn-default.navbar-btn{:href => new_user_registration_path, :type => "button", :class => "#{"active" if action_name == "me"}"} My Profile
     %br/
