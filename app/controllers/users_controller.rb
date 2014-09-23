@@ -28,6 +28,8 @@ class UsersController < ApplicationController
 
 
   def by_condition
+    #@tags = ActsAsTaggableOn::Tag.all
+    #@tags = ActsAsTaggableOn::Tag.includes(:taggings).select("DISTINCT tags.*")
     @tags = User.tag_counts_on(:tags).order('count desc')
     #alpha?
   end
@@ -52,7 +54,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Your Interests Have Been Set!"
     end
 
-    redirect_to overview_path
+    redirect_to me_path(current_user)
   end
 
   private

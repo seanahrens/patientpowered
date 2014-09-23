@@ -1,0 +1,27 @@
+.row
+  .col-md-12
+    %h4 My Profile
+
+    .list-group
+      .list-group-item
+        %a{:href => edit_user_path(current_user)}
+          = render current_user
+
+
+
+.row
+  .col-md-12
+    %h4 My Condition Interests
+    .list-group
+      -current_user.tags.each do |tag|
+        %a.list-group-item.list-group-item-info{:href=> tagged_path(tag: tag.name)}
+          = tag.name
+          -#.badge= tag.count
+    %a.btn.btn-primary.btn-block{:href => new_idea_path} I Want to Submit an Idea!
+    %a.btn.btn-block.btn-warning{:href => edit_user_path(current_user)} Edit Conditions
+
+
+%br/
+.row
+  .col-md-12
+    %a.btn.btn-block.btn-default{:href => main_app.destroy_user_session_path, "data-method" => "delete"} Sign out

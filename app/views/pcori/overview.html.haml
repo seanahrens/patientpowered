@@ -1,185 +1,96 @@
-.row.visible-sm.visible-xs
-  = image_tag "globe.png", :class => "col-xs-12"
+/ .row.visible-sm.visible-xs
+/   = image_tag "globe.png", :class => "col-xs-12"
+
+.row
+  .col-md-12
+
+    .text-center
+      %em
+        Your doorway into the world of Patient Powered Research
+      %hr/
 
 
-.text-center
+    %p
+      %strong Patient-Powered Research
+      is a new concept. It is patients and their health data and insights driving the medical research process. This website is a hub for people (patients, researchers, and other health professionals) who want to perform patient-powered research. Use this website to connect with them around ideas for research.
+    %p
+      Specify the condition(s) you care about and you'll find others who care. Propose an idea for research you want done, and have people gather around and build that idea up until it blossoms into an full-blown research study.
 
-  %h3 Patient-Powered Research
+    %hr/
 
-  %p This is a network that connects patients with the people that care about solving their condition!
-  %p.small
-    The idea is refreshing. Patients propose research questions. Researchers and Healthcare Professionals (Stakeholders) riff and collaborate on these ideas. Other patients chime in with their perspectives and insight. When research ideas have enough buy-in, they bubble up, and create amazing opportunities for global collaboration between Patients, Researchers, and Healthcare Professionals.
+    %h3.text-center
+      We Are...
+
+    = render "/users/role_nav"
+
     %br/
-    %a{:href => tour_path} Watch a Video Tour
-
-
-  %h4 We are People That Care
-
-
-  = render "/users/role_nav"
-
-  %br/
-
-- if !current_user
-  %a.btn.btn-primary.btn-block{:href => new_idea_path}
-    I Want to Participate in This!
-    %i.fa.fa-chevron-right
-
-  %br/
-
-  %p.text-center.small Through shared ideas, we create the potential for patient-centered research collaborations! Everyone (yes you) is welcome here.
-
-%h3.text-center Top Ideas by Condition
-.text-center
-  %p
-    Total Ideas
-    %span.badge= Idea.count
 
 .row
   .col-md-12
     .list-group
-      - if current_user && current_user.tags.any?
-        - tags = current_user.tags
-      - else
-        - tags = User.find(1).tags
+      / %a.list-group-item.list-group-item-default{:href=> ""}
+      /   %span.badge= User.count
+      /   People
+      %a.list-group-item.list-group-item-default{:href=> ideas_path}
+        %span.badge= Idea.count
+        Ideas
+      %a.list-group-item.list-group-item-default{:href=> by_condition_path}
+        %span.badge=User.tag_counts_on(:tags).count
+        Conditions
 
-      - tags.each do |tag|
-        %a.list-group-item.list-group-item-success{:href=> tagged_url(:tag => tag.name)}
-          = tag.name
-          -#.badge= tag.count
-
-
-
-      %a.list-group-item.list-group-item-info{:href=> by_condition_path}
-        Browse Ideas in all Conditions...
-
-- if !current_user
-  %p.text-center
-    %small If you join, the feeds above and below will be personalized with ideas about the conditions that you care about.
-- else
-  .text-center
-    %p.small
-      The above list is personalized to the conditions you set of interest.
-      %br/
-      %a.btn.btn-sm{:href => edit_user_path(current_user)} Update My Interests
-
-
-
-/ .row
-/   .col-md-12
-/     .list-group
-/       %a.list-group-item{:href=> users_path(role: :patient)}
-/         Patients
-/         .badge= @patient_count
-/       %a.list-group-item{:href=> users_path(role: :researcher)}
-/         Researchers
-/         .badge= @researcher_count
-/       %a.list-group-item{:href=> users_path(role: :stakeholder)}
-/         Stakeholders
-/         .badge= @stakeholder_count
-/       %a.list-group-item.list-group-item-info{:href=> users_by_condition_path}
-/         By Condition
-
-
-/ .input-group
-/   %span.input-group-addon
-/     %i.fa.fa-search
-/   %input.form-control{type: "text"}/
-/   %span.input-group-btn
-/     %button.btn.btn-default{type: "button"} Search!
-
-/ %br/
-
-
-
-
-
-%h3.text-center
-  %i.fa.fa-lightbulb-o.text-h2
-  Trending Ideas
-
-%ul.list-group
-  -# Idea.all.sort_by(&:followers_count).last(4).reverse.each do |idea|
-  - Idea.video.sort_by(&:followers_count).last(4).reverse.each do |idea|
-    %li.list-group-item
-      = render idea
-  %li.list-group-item
-    %a.btn.btn-success.btn-md.btn-block{:href => ideas_path}
-      See All Ideas...
+.row
+  .col-md-12
+    %a.btn.btn-success.btn-md.btn-block{:href => by_condition_path}
+      What Condition Do You Care About?
       %i.fa.fa-chevron-right
 
+    %hr/
 
 
-- if !current_user
-  %p.text-center
-    %small You might be a patient (caring for a patient), a researcher, a healthcare industry professional (we call you stakeholders). In any case, there are probably medical conditions that you care become solved in more patient-centric ways. Join this global collaboration! You're needed here.
+.row
+  .col-md-12
 
-  %br/
+    %center
+      %h4 Watch the Video Tour...
+    %iframe{allowfullscreen: "", height: "220px;", width: "100%", src: "#{@tour_url}&showinfo=0&autohide=1", :frameborder => 0}
 
-  %a.btn.btn-primary.btn-block{:href => new_idea_path}
-    Join Us!
-%br/
-%br/
-
-%p.text-center
-  %small
-    %a{:href => stats_path} See Network Stats
-/ %br/
-/ .well.well-sm
-/   .text-center
-/     %h3
-/       How Does It Work?
-
-/   %br/
-
-/   .row
-/     .col-xs-12.text-center
-/       %i.fa.fa-lightbulb-o.text-h1.text-blue
-/       .text-h4 You Submit a Research Idea
-/       .text-darkgray.small Your personal experience tells you something should be studied.
-
-/   %br/
-/   .row
-/     .col-xs-12.text-center
-/       %i.fa.fa-chevron-down.text-h2.text-gray
-/   %br/
-
-/   .row
-/     .col-xs-12.text-center
-/       %i.fa.fa-thumbs-o-up.text-h1.text-blue
-/       .text-h4 People Follow & Contribute
-/       .text-darkgray.small Patients, Researchers, & Medical Professionals show interest & support for your idea being rigorously studied.
-
-
-/   %br/
-/   .row
-/     .col-xs-12.text-center
-/       %i.fa.fa-chevron-down.text-h2.text-gray
-/   %br/
-
-/   .row
-/     .col-xs-12.text-center
-/       %i.fa.fa-graduation-cap.text-h1.text-blue
-/       .text-h4 Researchers Turn Your Idea into a Study
-/       .text-darkgray.small Researchers spot well-supported ideas and create a rigorous scientific study to answer it. They post what participation of patients and resources they need to make it a reality. People pitch in participation to make it happen.
-
-
-/   %br/
+    %hr/
 
 
 
-/ %h3.text-center
-/   %i.fa.fa-graduation-cap.text-h2
-/   Popular Studies
+.row
+  .col-md-12
+    %h3.text-center
+      / %i.fa.fa-lightbulb-o.text-h2
+      Trending Ideas
+
+    %ul.list-group
+      -# Idea.all.sort_by(&:followers_count).last(4).reverse.each do |idea|
+      - Idea.video.sort_by(&:followers_count).last(4).reverse.each do |idea|
+        %li.list-group-item
+          = render idea
+      %li.list-group-item
+        %a.btn.btn-info.btn-md.btn-block{:href => ideas_path}
+          See All Ideas...
+          %i.fa.fa-chevron-right
 
 
-/ = render "study_item"
-/ %hr/
-/ = render "study_item"
+    / %p.text-center
+    /   %small
+    /     %a{:href => stats_path} See Network Stats
 
-/ %br/
+    %hr/
 
-/ %a.btn.btn-primary.btn-block{:href => study_index_path}
-/   See All Studies...
-/   %i.fa.fa-chevron-right
+
+.row
+  .col-md-12
+
+    %a.btn.btn-default.btn-md.btn-block{:href => new_idea_path}
+      Submit Your Idea!
+      %i.fa.fa-chevron-right
+
+    %a.btn.btn-primary.btn-md.btn-block{:href => new_idea_path}
+      Join the Community!
+      %i.fa.fa-chevron-right
+
 

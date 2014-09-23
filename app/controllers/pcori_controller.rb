@@ -4,6 +4,7 @@ class PcoriController < ApplicationController
   before_action :set_body_class_to_idea, :only => [:idea_index,:idea_show,:idea_new]
   before_action :set_body_class_to_study, :only => [:study_index,:study_show,:study_new]
   before_action :set_tour_url, :only => [:overview,:tour,:slides]
+  before_action :authenticate_user!, :only => [:me]
 
   def set_body_class_to_idea
     @body_class = "idea"
@@ -31,6 +32,9 @@ class PcoriController < ApplicationController
 
   end
 
+  def me
+
+  end
 
   def slides
     # if !upload_complete

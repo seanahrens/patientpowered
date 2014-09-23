@@ -3,23 +3,15 @@
 %ol.breadcrumb
   - if @condition
     %li
-      %a{:href=>overview_path} All Ideas
+      %a{:href=>by_condition_path} All Ideas
     %li.active
       = truncate(@condition)
   - else
     %li
-      %a{:href=>overview_path} All Ideas
+      %a{:href=>ideas_path} All Ideas
     %li.active
       %a{:href=>by_condition_path} Choose a Condition...
 
-.well.well-sm
-  .text-center
-    .text-h4 People who Care about
-    = @condition if @condition
-    = "All Conditions" if !@condition
-  = render "/users/role_nav"
-
-%br/
 
 - if !@ideas.any?
   %hr/
@@ -29,11 +21,15 @@
       %strong= @condition
       %u yet.
     %p Do you have a good idea? You should post the first. The people above will see it in the feeds.
+    %a.btn.btn-primary{:href => new_user_registration_path} Join to Submit Your Idea!
+
+
   %hr/
 - else
   - @ideas.each do |idea|
     = render idea
     %hr/
+
 
 
 
@@ -48,18 +44,29 @@
       %small Patients, Researchers, and Stakeholders can all submit ideas. The fun isn't just for patients!
 %br/
 
+%br/
+
+
+.well.well-sm
+  .text-center
+    .text-h4 People who Care about
+    = @condition if @condition
+    = "All Conditions" if !@condition
+  = render "/users/role_nav"
 
 
 
-- if @condition == "Sleep Apnea"
-  .alert.alert-info
-    .text-center
-      %small Whoa! There's an existing Patient Network for You!
-      %br/
-      %a{:href => "http://myapnea.org"} The MyApnea Patient Network
-- if @condition == "Crohn's Disease"
-  .alert.alert-info
-    .text-center
-      %small Whoa! There's an existing Patient Network for You!
-      %br/
-      %a{:href => "http://ccfa.openpprn.org"} The Crohn's Patient Network
+
+
+/ - if @condition == "Sleep Apnea"
+/   .alert.alert-info
+/     .text-center
+/       %small Whoa! There's an existing Patient Network for You!
+/       %br/
+/       %a{:href => "http://myapnea.org"} The MyApnea Patient Network
+/ - if @condition == "Crohn's Disease"
+/   .alert.alert-info
+/     .text-center
+/       %small Whoa! There's an existing Patient Network for You!
+/       %br/
+/       %a{:href => "http://ccfa.openpprn.org"} The Crohn's Patient Network

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'following_idea' => 'users#following_idea', :as => 'following_idea'
   get 'slides' => 'pcori#slides'
   get 'stats' => 'pcori#stats'
-
+  get 'me' => 'pcori#me'
   get 'tour' => 'pcori#tour'
 
   # This line mounts Forem's routes at /forums by default.

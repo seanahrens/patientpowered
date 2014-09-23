@@ -1,52 +1,19 @@
-.navbar.navbar-default{role: "navigation"}
-  .navbar-header
+.row
+  .col-md-12
+
+    .text-center
+      %a{:href => overview_path}
+        = image_tag "logo.png", :style => "width: 300px; margin-top: 10px; margin-bottom: 7px;"
+
+.row
+  .col-md-12
 
 
-    //{:style => "position: absolute; right: 100px;"}
-    %a.navbar-brand{:href => root_path} Patient Powered
-
-    / %a.btn.btn-default.navbar-btn{:href => "javascript:history.back()", :style => "margin-left: 15px;"}
-    /   %i.fa.fa-arrow-left
-
-
-    %ul.nav.navbar-nav.pull-right{:style=>"margin-right: 10px;"}
-
+    .btn-group.btn-group-justified
+      %a.btn.btn-default.navbar-btn{:href => ideas_path, :type => "button", :class => "#{"active" if controller_name == "ideas" && action_name == "index"}"} Top Ideas
+      %a.btn.btn-default.navbar-btn{:href => by_condition_path, :type => "button", :class => "#{"active" if action_name == "by_condition"}"} All Conditions
       - if current_user
-        %li
-          = link_to "<i class='fa fa-sign-out'></i> Sign out".html_safe, main_app.destroy_user_session_path, :method => :delete
+        %a.btn.btn-default.navbar-btn{:href => me_path, :type => "button", :class => "#{"active" if action_name == "me"}"} My Conditions
       - else
-        %li
-          %a{:href => new_user_registration_path}
-            %i.fa.fa-sign-in
-              Join
-
-
-
-
-
-
-
-
-
-    / -# Sign-in Section
-    / %ul.nav.navbar-nav.pull-right
-    /   - if current_user
-    /     %li.dropdown
-    /       %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-    /         My Settings
-    /         %b.caret
-    /       %ul.dropdown-menu
-    /         %li
-    /           %a{href: "/account"}
-    /             %i.fa.fa-user &nbsp; Account Settings
-    /         - if current_user.can?(:view_admin_dashboard)
-    /           %li
-    /             %a{href: "/admin", :title => "Admin Panel"}
-    /               %i.fa.fa-wrench &nbsp; Admin Panel
-    /         %li
-    /           = link_to "<i class='fa fa-sign-out'></i> Sign out".html_safe, main_app.destroy_user_session_path, :method => :delete
-    /   - else
-    /     %li
-    /       %a{:href => new_user_session_path}
-    /         %i.fa.fa-sign-in
-    /           Sign In
+        %a.btn.btn-default.navbar-btn{:href => new_user_registration_path, :type => "button", :class => "#{"active" if action_name == "me"}"} My Conditions
+    %br/
