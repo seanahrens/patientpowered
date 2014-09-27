@@ -28,6 +28,15 @@ class PcoriController < ApplicationController
 
   end
 
+
+  def conditions
+    respond_to do |format|
+      format.html
+      format.json { render :json => CONDITIONS.to_json }
+    end
+  end
+
+
   def stats
 
   end
@@ -47,4 +56,6 @@ class PcoriController < ApplicationController
   def set_tour_url
     @tour_url = "http://www.youtube.com/embed/frfskWA6XCE?rel=0&showinfo=0"
   end
+
+
 end

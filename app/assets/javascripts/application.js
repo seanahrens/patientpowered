@@ -13,11 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-
 //= require forem
-//= require main
-//= require pages
-//= require admin
-//= require tagmanager
 
+//### tagmanager
 
+//= require typeahead.bundle.min
+//= require bootstrap-tagsinput
+//= require tags
+//= require_tree .

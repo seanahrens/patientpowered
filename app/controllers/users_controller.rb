@@ -45,7 +45,6 @@ class UsersController < ApplicationController
   def update
     @user = current_user
 
-
     update_role(:patient)
     update_role(:researcher)
     update_role(:stakeholder)
